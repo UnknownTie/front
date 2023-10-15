@@ -1,0 +1,134 @@
+.bgR1 { background-color: rgba(255,50,50,0.1); }
+.bgR2 { background-color: rgba(255,50,50,0.2); }
+.bgR3 { background-color: rgba(255,50,50,0.3); }
+.bgR4 { background-color: rgba(255,50,50,0.4); }
+.bgR5 { background-color: rgba(255,50,50,0.5); }
+.bgR6 { background-color: rgba(255,50,50,0.6); }
+.bgR7 { background-color: rgba(255,50,50,0.7); }
+.bgR8 { background-color: rgba(255,50,50,0.8); }
+.bgR9 { background-color: rgba(255,50,50,0.9); }
+.bgR10 { background-color: rgba(255,50,50,1); }
+
+.bgG1 { background-color: rgba(50,255,50,0.1); }
+.bgG2 { background-color: rgba(50,255,50,0.2); }
+.bgG3 { background-color: rgba(50,255,50,0.3); }
+.bgG4 { background-color: rgba(50,255,50,0.4); }
+.bgG5 { background-color: rgba(50,255,50,0.5); }
+.bgG6 { background-color: rgba(50,255,50,0.6); }
+.bgG7 { background-color: rgba(50,255,50,0.7); }
+.bgG8 { background-color: rgba(50,255,50,0.8); }
+.bgG9 { background-color: rgba(50,255,50,0.9); }
+.bgG10 { background-color: rgba(50,255,50,1); }
+
+.bgB1 { background-color: rgba(50,50,255,0.1); }
+.bgB2 { background-color: rgba(50,50,255,0.2); }
+.bgB3 { background-color: rgba(50,50,255,0.3); }
+.bgB4 { background-color: rgba(50,50,255,0.4); }
+.bgB5 { background-color: rgba(50,50,255,0.5); }
+.bgB6 { background-color: rgba(50,50,255,0.6); }
+.bgB7 { background-color: rgba(50,50,255,0.7); }
+.bgB8 { background-color: rgba(50,50,255,0.8); }
+.bgB9 { background-color: rgba(50,50,255,0.9); }
+.bgB10 { background-color: rgba(50,50,255,1); }
+
+.bgGray1 { background-color: rgba(100,100,100,0.1); }
+.bgGray2 { background-color: rgba(100,100,100,0.2); }
+.bgGray3 { background-color: rgba(100,100,100,0.3); }
+.bgGray4 { background-color: rgba(100,100,100,0.4); }
+.bgGray5 { background-color: rgba(100,100,100,0.5); }
+.bgGray6 { background-color: rgba(100,100,100,0.6); }
+.bgGray7 { background-color: rgba(100,100,100,0.7); }
+.bgGray8 { background-color: rgba(100,100,100,0.8); }
+.bgGray9 { background-color: rgba(100,100,100,0.9); }
+.bgGray10 { background-color: rgba(100,100,100,1); }
+
+.bgWhite1 { background-color: rgba(255,255,255,0.7); }
+.bgWhite2 { background-color: rgba(255,255,255,0.8); }
+.bgWhite3 { background-color: rgba(255,255,255,0.9); }
+.bgWhite4 { background-color: rgba(255,255,255,1); }
+
+.bgBlack1 { background-color: rgba(0,0,0,0.7); }
+.bgBlack2 { background-color: rgba(0,0,0,0.8); }
+.bgBlack3 { background-color: rgba(0,0,0,0.9); }
+.bgBlack4 { background-color: rgba(0,0,0,1); }
+
+/* 글자색  */
+.R1 { color: rgba(255,50,50,0.1); }
+.R2 { color: rgba(255,50,50,0.2); }
+.R3 { color: rgba(255,50,50,0.3); }
+.R4 { color: rgba(255,50,50,0.4); }
+.R5 { color: rgba(255,50,50,0.5); }
+.R6 { color: rgba(255,50,50,0.6); }
+.R7 { color: rgba(255,50,50,0.7); }
+.R8 { color: rgba(255,50,50,0.8); }
+.R9 { color: rgba(255,50,50,0.9); }
+.R10 { color: rgba(255,50,50,1); }
+
+.G1 { color: rgba(50,255,50,0.1); }
+.G2 { color: rgba(50,255,50,0.2); }
+.G3 { color: rgba(50,255,50,0.3); }
+.G4 { color: rgba(50,255,50,0.4); }
+.G5 { color: rgba(50,255,50,0.5); }
+.G6 { color: rgba(50,255,50,0.6); }
+.G7 { color: rgba(50,255,50,0.7); }
+.G8 { color: rgba(50,255,50,0.8); }
+.G9 { color: rgba(50,255,50,0.9); }
+.G10 { color: rgba(50,255,50,1); }
+
+.B1 { color: rgba(50,50,255,0.1); }
+.B2 { color: rgba(50,50,255,0.2); }
+.B3 { color: rgba(50,50,255,0.3); }
+.B4 { color: rgba(50,50,255,0.4); }
+.B5 { color: rgba(50,50,255,0.5); }
+.B6 { color: rgba(50,50,255,0.6); }
+.B7 { color: rgba(50,50,255,0.7); }
+.B8 { color: rgba(50,50,255,0.8); }
+.B9 { color: rgba(50,50,255,0.9); }
+.B10 { color: rgba(50,50,255,1); }
+
+.Gray1 { color: rgba(100,100,100,0.1); }
+.Gray2 { color: rgba(100,100,100,0.2); }
+.Gray3 { color: rgba(100,100,100,0.3); }
+.Gray4 { color: rgba(100,100,100,0.4); }
+.Gray5 { color: rgba(100,100,100,0.5); }
+.Gray6 { color: rgba(100,100,100,0.6); }
+.Gray7 { color: rgba(100,100,100,0.7); }
+.Gray8 { color: rgba(100,100,100,0.8); }
+.Gray9 { color: rgba(100,100,100,0.9); }
+.Gray10 { color: rgba(100,100,100,1); }
+
+.White1 { color: rgba(255,255,255,0.7); }
+.White2 { color: rgba(255,255,255,0.8); }
+.White3 { color: rgba(255,255,255,0.9); }
+.White4 { color: rgba(255,255,255,1); }
+
+.Black1 { color: rgba(0,0,0,0.7); }
+.Black2 { color: rgba(0,0,0,0.8); }
+.Black3 { color: rgba(0,0,0,0.9); }
+.Black4 { color: rgba(0,0,0,1); }
+
+/* 버튼 라운드 */
+.No_radius_1 { border: none; border-radius : 1px; }
+.No_radius_2 { border: none; border-radius : 2px; }
+.No_radius_3 { border: none; border-radius : 3px; }
+.No_radius_4 { border: none; border-radius : 4px; }
+.No_radius_5 { border: none; border-radius : 5px; }
+.No_radius_6 { border: none; border-radius : 6px; }
+.No_radius_7 { border: none; border-radius : 7px; }
+.No_radius_8 { border: none; border-radius : 8px; }
+.No_radius_9 { border: none; border-radius : 9px; }
+.No_radius_10{ border: none; border-radius : 10px; }
+.No_radius_50{ border: none; border-radius : 50px; }
+
+
+
+
+
+
+
+
+
+
+
+
+

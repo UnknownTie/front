@@ -1,11 +1,16 @@
 
 
 /* css */
-
 /* folder file: 파일을 가지고 가야된다. */
-@import url("../../0.mycss/BT_Color.css");
-@import url("../../0.mycss/BaseCss.css");
+@import url(../../0.mycss/ericReset.css); /* 에릭 리셋 */
+@import url("../../0.mycss/UerReset.css");
+
+@import url("../../0.mycss/Color.css");
+@import url("../../0.mycss/button.css");
+@import url("../../0.mycss/font.css");
+
 @import url("./temporarily.css");
+
 
 
 /* font */
