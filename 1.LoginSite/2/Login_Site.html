@@ -1,0 +1,94 @@
+<html>
+<head>
+  <title>로그인</title>
+  <link rel="stylesheet" href="./linkcss.css">
+  <meta charset="UTF-8">
+
+  <style>
+    body{
+      font-size: 20px;
+    }
+    .bgImg {
+      background-color:  rgb(200, 200, 200);
+      overflow: scroll;
+    }
+
+    .btnHref{
+      text-decoration: none;
+      text-decoration: underline;
+      color: blue;
+    }
+    .btnHref:hover{ /*올리면 바꿈*/
+      text-decoration: underline;
+      color: orange;
+    }
+    .btnHref:active{/*누르면 바꿈*/
+      color: red;
+    }
+    
+    input{
+      width: 30%;
+      height: 30px;
+    } 
+    input[type="submit"]{
+      width: 10%;
+    }
+    fieldset{
+      width:70%; 
+      padding: 20px 20px;
+      background-color: white;
+      border: 1px solid black;
+    }
+
+    .container,
+    .container-fluid,
+    .container-xxl,
+    .container-xl,
+    .container-lg,
+    .container-md,
+    .container-sm {
+    width: 100%;
+    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: var(--bs-gutter-x, 0.75rem);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .textboxLine{
+
+  }
+  
+  .textbox{
+    display: inline-block;
+    word-wrap: break-word;
+    text-align: left;
+    width: 20%;
+  }
+
+  </style>
+
+</head>
+
+<body class="container">
+
+  <form action="./20231012_2_MemberJoinPost.html" method="get">
+    <fieldset  >
+      <div style="text-align: center;">
+        <label for="id" class="textbox">아이디</label>
+        <input type="text" id="id" placeholder="아이디를 입력하세요" required /><br/>
+        <label for="pw" class="textbox">비밀번호</label>
+        <input type="password" id="pw" placeholder="비밀번호를 입력하세요" required />
+      </div>
+
+      <br>
+      <div style="text-align: right;">
+        <input type="submit"  value="로그인"/>
+      </div>
+
+  </fieldset>
+
+</form>
+
+</body>
+
+</html>

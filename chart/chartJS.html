@@ -1,0 +1,38 @@
+<div>
+                  <canvas id="myChart" width=50% height=50% style="display: block; box-sizing: border-box; height: 362px; width: 453.333px;">
+                    <!-- 바로 이 부분에 차트가 그려진다. -->
+                    </canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+	    data : {
+	    	labels : ["-10:00","","","","","-05:00","","","","",],
+			datasets : [ {
+				data : [509, 490, 493, 501, 513, 510, 603, 643, 636, 526 ],
+				label : "이산화탄소",
+					borderColor : "#FF7F50", /* #Coral */
+					fill : false
+				} ]
+		},//end of data
+        borderWidth: 1
+      }]
+    },
+    options: {
+	scales : {
+	y : {
+	suggestedMin :488,
+	suggestedMax :645
+	 }
+      }
+    }
+  });
+</script>

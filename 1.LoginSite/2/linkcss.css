@@ -1,0 +1,16 @@
+
+
+/* css */
+
+/* folder file: 파일을 가지고 가야된다. */
+@import url("../../0.mycss/BT_Color.css");
+
+
+
+/* font */
+@import url("https://fonts.googleapis.com");
+@import url("https://fonts.gstatic.com");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@700;900&display=swap");
+
+/* icon */
+@import url("img/favicon.ico");
