@@ -211,7 +211,7 @@
       console.log("");
       console.log("3===========================");
       console.log("시작 : " , arrT);
-      
+
       arrSubT = arrT;
       let res1 = arrSubT.filter(function(data, idx) {console.log(data, " : " , idx);});
       console.log("filter(function(data, idx)");
@@ -255,7 +255,199 @@
     }
 
   </script>
+<!-- 4 -->
+<script>
+  'use strict'
+  function strUse() {
+    let rtnText ="consol 확인";
+    demo.innerHTML = rtnText;
+    console.clear();
 
+    let strT = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcABCdefgABC';
+    let strT2 = '123456789012345678901234567890';
+    console.log("strT : "  + strT );
+    console.log("strT2 : " + strT2);
+    console.log("");
+    let strSubT ;
+    let strSubT2 ;
+
+    strSubT = strT;
+    strSubT2 = strT2;
+    strSubT = strSubT2.substring(5);
+    console.log("1 substring(5) : ");
+    console.log("strSubT2 : " + strSubT);
+
+    strSubT = strT;
+    strSubT2 = strT2;
+    strSubT = strSubT2.substring(5, 10);
+    console.log("2 substring(5, 10) : ");
+    console.log("strSubT2 : " + strSubT);
+
+    strSubT = strT;
+    strSubT2 = strSubT2;
+    strSubT = strT.indexOf('abcz');
+    console.log("3 indexOf('abcz') : ");
+    console.log("strSubT : " + strSubT);
+
+    strSubT = strT;
+    strSubT2 = strT2;
+    strSubT = strSubT2.slice(5);
+    console.log("4 slice(5) : ");
+    console.log("strSubT2 : " + strSubT);
+
+    strSubT = strT;
+    strSubT2 = strT2;
+    strSubT = strSubT2.slice(5, 10);
+    console.log("5 slice(5, 10) : ");
+    console.log("strSubT2 : " + strSubT);
+
+    strSubT = strT;
+    strSubT2 = strT2;
+    strSubT = strSubT2.substr(5, 10);     // 인덱스 5번지에서 10개의 문자열을 가져온다.
+    console.log("6 substr(5, 10) : ");
+    console.log("strSubT2 : " + strSubT);
+
+    strSubT = strT;
+    strSubT2 = strT2;
+    strSubT = strT.replace('ABC', '_______');   // 첫번째 검색된 문자열을 치환한다.
+    console.log("7 replace('ABC', '_______') : ");
+    console.log("strSubT : " + strSubT);
+
+    strSubT = strT;
+    strSubT2 = strT2;
+    strSubT = strT.replaceAll('ABC', '_______');   // 문장안의 일치되는 모든 문자열을 치환한다.
+    console.log("8 replaceAll('ABC', '_______') : ");
+    console.log("strSubT : " + strSubT);
+
+    strSubT = strT;
+    strSubT2 = strT2;
+    strSubT = strT.toUpperCase();
+    console.log("9 toUpperCase() : ");
+    console.log("strSubT : " + strSubT);
+
+  }
+</script>
+<!-- 5 -->
+<script>
+  'use strict'
+  function nUse() {
+    let rtnText ="consol 확인";
+    demo.innerHTML = rtnText;
+    console.clear();
+
+    let suArr = [10, -20, 3.16 , -3.14 , 31.5];
+    console.log("시작 ");
+    console.log("suArr : " ,suArr);
+    for(let su of suArr)
+      console.log("su : "+su);
+    console.log("");
+    console.log("1 max ");
+    console.log("su : "+Math.max(...suArr));
+
+    console.log("");
+    console.log("2 min ");
+    console.log("su : "+Math.min(...suArr));
+
+    console.log("");
+    console.log("3 ceil ");
+    for(let su of suArr)
+      console.log("su : "+Math.ceil(su));
+
+    console.log("");
+    console.log("4 floor ");
+    for(let su of suArr)
+      console.log("su : "+Math.floor(su));
+
+    console.log("");
+    console.log("5 trunc ");
+    for(let su of suArr)
+      console.log("su : "+Math.trunc(su));
+
+    console.log("");
+    console.log("6 pow 거듭제곱");
+    for(let su in suArr){
+      let strNum =""+su;
+      for(let i=1; i<su ;i++){
+        strNum +="*"+su;
+      }
+      console.log("su ("+strNum + ") : "+Math.pow(su , su));
+    }
+ 
+
+    console.log("");
+    console.log("7 abs ");
+    for(let su of suArr)
+      console.log("su : "+Math.abs(su));
+
+    console.log("");
+    console.log("8 sqrt 루트(√ ) , 음수 : NaN");
+    for(let su of suArr)
+      console.log("su : "+Math.sqrt(su));
+
+    console.log("");
+    console.log("9 su.toFixed ");
+    // 매개변수로 지정된 소수이하 자리수 까지 출력시켜준다.(반올림 처리 한다.)
+    for(let su of suArr)
+      console.log("su : "+su.toFixed(1));
+
+    console.log("");
+    console.log("10 round ");
+    //소수점 제거 
+    for(let su of suArr)
+      console.log("su : "+Math.round(su));
+ 
+
+  }
+</script>
+<!-- 5 -->
+<script>
+  'use strict'
+  function dateTime() {
+    let rtnText ="consol 확인";
+    demo.innerHTML = rtnText;
+    console.clear();
+
+    // 오늘날짜... Date()
+    const today = new Date();
+
+    const daytime = today.toLocaleString(); 
+    console.log("daytime : ", daytime);
+    const day = today.toLocaleDateString(); 
+    console.log("day : ", day);
+    const time = today.toLocaleTimeString(); 
+    console.log("time : ", time);
+    const lastday =  new Date(2023, today.getMonth()+1, 0);
+    console.log("lastday : ", lastday.getDate());
+    demo.innerHTML = daytime;
+
+    const year = today.getFullYear(); // 연도 4자리
+    const month = today.getMonth();   // 월(기존월보다 -1)
+    const date = today.getDate();     // 일
+    const hour = today.getHours();    // 시
+    const minute = today.getMinutes();// 분
+    const second = today.getSeconds();// 초
+    const yymmdd = year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
+
+    console.log(typeof(today));
+    console.log("today : ", today);
+    console.log("year : ", year);
+    console.log("month : ", month + 1);
+    console.log("date : ", date);
+    console.log("hour : ", hour);
+    console.log("minute : ", minute);
+    console.log("second : ", second);
+    console.log("yymmdd : ", yymmdd);
+
+    let weekStr = today.getDay(); // 요일
+    let week = ['일','월','화','수','목','금','토'];
+    console.log("요일 : ", weekStr);  // 일:0, 월:1, 화:2, 수:3, 목:4, 금:5, 토:6
+    console.log("요일 : ", week[weekStr]+'요일');
+
+    // 해당월의 마지막 일자
+    let lastDate = new Date(2023, 10, 0);
+    console.log("lastDate :", lastDate.getDate());
+  }
+</script>
 </head>
 <body> 
   <!-- 결과 출력 -->
@@ -274,6 +466,13 @@
     <div  type="button" onclick="ArrType() "  class="bgG4 lintH50px" >1.배열 타입 </div>
     <div  type="button" onclick="ArrChange() "  class="bgB4 lintH50px" >2.배열 수정 </div>
     <div  type="button" onclick="ArrUse() "  class="bgR4 lintH50px" >3.배열 응용 </div>
+  </div>
+
+  <div class="container" style="border: 1px solid black; margin: 20px; padding: 20px">
+    <h2>2 기타 </h2><br/>
+    <div  type="button" onclick="strUse() "  class="bgG4 lintH50px" >1.문자 </div>
+    <div  type="button" onclick="nUse() "  class="bgB4 lintH50px" >2.숫자 </div>
+    <div  type="button" onclick="dateTime() "  class="bgG4 lintH50px" >3.날짜 </div>
 
   </div>
 
