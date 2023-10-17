@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>html 기본 선택자 및 css 선택</title>
+  <link rel="stylesheet" type="text/css" href="2.cssText.css">  <!-- (외부스타일) -->
+
+</head>
+<body>
+  <div class="container">  
+    <br/><br/><br/>    <br/><br/><br/>
+    <div class="container boxT Pos4">
+      <h1>박스 테스트 (4) </h1>
+      <div>첫번째 박스</div>
+      <div class="boxT2 fwbolder fw20px"><a href="#top">위로</a></div>
+      <div class=><a href="#bottom">아래로</a></div>
+      <div class=>네번째 박스</div>
+    </div>
+    <br><br>
+
+    <div class="container boxT">
+    <h1>박스 테스트 </h1>
+    <div class="Pos1">박스 테스트 1</div>
+    <div class="Pos2">박스 테스트 2
+    </div>
+    <div class="Pos3" >박스 테스트 3
+      <div class="Pos3"> 박스 테스트 2-3   </div>
+      <div class="Pos4"> 박스 테스트 2-4saaaaassss</div>
+    </div>
+    <div class="Pos5" >박스 테스트 5</div>
+    <!-- <div class="Pos4" >박스 테스트 4 (4) </div> -->
+    </div>
+    <br/><br/><br/>
+    
+    <h2>text 연습</h2>
+    <div > 1.기본
+      <span class="divT fwlighter">
+        class divT 
+        <span class="spanT fwbolder">(
+          spanT)
+        </span>
+        Sheet 연습2  
+      </span>
+    </div>
+    <br/><br/><br/>
+
+    <div>
+      <h2>form 연습</h2>
+      <form action="">
+        <fieldset>
+          <div>
+            <label for="mid" class="title">아이디</label>
+            <input type="text" name="mid" id="mid" size="20" placeholder="아이디를 입력하세요" autofocus />
+          </div>
+          <div >
+            <label for="age" class="title">나이</label>
+            <input type="number" name="age" id="age" size="20" placeholder="나이를 입력하세요" value="20" min="1" max="99" maxlength="2" style="width:80px" />
+          </div>
+        </fieldset>
+        <input type="submit" value="전송" />
+        <input type="reset" value="다시입력" />
+      </form>
+    </div>
+    <br/><br/><br/>
+
+    <div>
+      <div class="borderSet textCenter ">
+        1내가 프로젝트하면서 쓴 공책이 있는데, 블로그를 열심히 하려고 했지만기기기기기 공책에만 써있는 문제상황과 해결방안들이 있다.
+      </div>
+
+      <div class="borderSet textCenter2">
+        2내가 프로젝트하면서 쓴 공책이 있는데, 블로그를 열심히 하려고 했지만기기기기기 공책에만 써있는 문제상황과 해결방안들이 있다.(2영역)
+      </div>
+      <div class="borderSet ffalily">
+        <span class="sentence">
+          <!-- 재확인 필요  --> 
+          <strong>
+            3내가 프로젝트하면서 쓴 공책이 있는데, 블로그를 열심히 하려고 했지만기기기기기 공책에만 써있는 문제상황과 해결방안들이 있다.
+          </strong>
+        </span>      
+      </div>
+      <br/><br/><br/>
+
+      <div>    <!-- 자손 자식은 나중에 첨부 -->
+        <ol>
+          <li>1</li>
+          <li>2
+            <ul>
+              <li>2-1</li>
+              <li>2-2</li>
+              <li>2-3</li>
+            </ul>
+          </li>
+          <li>3</li>
+          <li>4</li>
+        </ol>
+      </div>
+      <br/><br/><br/>
+
+
+
+    </div>
+
+  </div>
+
+  <h3>Casecading Style Sheet 연습3</h3>
+
+
+</body>
+</html>

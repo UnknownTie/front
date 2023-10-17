@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>배열 js </title>
+  <link rel="stylesheet" href="./20231017_2jsTest.css">
+
+
+  <script>
+    function demoReset(){
+      console.clear();
+      document.getElementById("demo").innerHTML ="";
+    }
+  </script>
+  <!-- 1 -->
+  <script>
+    "use strict"
+
+    function ArrType(){
+      let rtnText ="";
+      demo.innerHTML = rtnText;
+      console.clear();
+      //1. 배열 
+      let arr1 = new Array();      // int[] atom = new int[5];
+
+      arr1[0] = '감자',
+      arr1[1] = 15,
+      arr1[2] = [1,3,5,7],
+      arr1[3] = {name: '홍길동'},
+      arr1[4] = function(){console.log("방가~~");};
+
+      rtnText += "<br/>\*다른 타입 배열 삽입 가능(console)\*<br/>";
+      rtnText += "arr1 개수 ("+arr1.length +") : "+ arr1 ;
+      console.log("arr1 :", arr1);
+      for(let i=0; i<arr1.length; i++) {
+        rtnText += `arr1[${i}] : ${arr1[i]}`+" <br/> ";
+        console.log(arr1[i]);
+      }
+
+      let arr2 = [];           // int atom[] = new int[5];
+      let arr3 = [
+                  '문자자료',
+                  5,
+                  [2,4,6,8],
+                  {tel : '010-1234-5678'},
+                  function() {console.log('안녕하세요');}
+                ];
+
+      rtnText += "arr3 개수 ("+arr3.length +") : "+ arr3 ;
+      console.log("arr3 :", arr3);
+      //2. 출력 
+
+      for(let i=0; i<arr3.length; i++) {
+        rtnText += `arr3[${i}] : ${arr3[i]}`+" <br/> ";
+        console.log(arr3[i]);
+      }
+
+
+      rtnText += '<hr/>';
+
+      let arrT = [10,20,30,40,50];   // int[] atom[] = {"","",""};
+
+      rtnText += "arrT 개수 ("+arrT.length +") : "+ arrT + '<hr/>';
+      //2. 출력 
+      rtnText += "1. for length i++ <br/>";
+      for(let i=0; i<arrT.length; i++) {
+        rtnText += `arrT[${i}] : ${arrT[i]}`+" / ";
+      }
+      rtnText += "<br/>";
+      rtnText += "<br/>";
+      rtnText += "2. for of <br/>";
+      for(let arr of arrT) {
+        rtnText += arr+" / ";
+      }
+      rtnText += "<br/>";
+      rtnText += "<br/>";
+      rtnText += "3. for in <br/>";
+      for(let arr in arrT) {
+        rtnText += arr+" / ";
+      }
+      rtnText += "<br/>";
+      rtnText += "<br/>";
+      rtnText += "4-1. forEach (function(arr, i, arr2))<br/>";
+      let arr;
+      arrT.forEach(function(arr, i, arr2) {
+        rtnText += "arr : "+arr +" / ";
+        rtnText += "i : "+i+" / ";
+        rtnText += "arr2 : "+arr2+" <br/> ";
+      });
+      rtnText += "4-2. arrT.forEach(function(data, idx) <br/>";  
+      arrT.forEach(function(data, idx) {
+        rtnText += "data : "+data +" / ";
+        rtnText += "idx : "+idx+" / ";
+      });
+      
+      rtnText += "4-3. forEach (arr => )<br/>";
+      arrT.forEach(arr => rtnText += "arr : "+arr +"<br/>" );
+      rtnText += "<br/>";
+
+      rtnText += "5. map( (data,idx) => idx data ))<br/>";
+      arrT.map((data,idx) => rtnText += "idx : " + idx +" / data : "+data+"<br/>" ); 
+
+      rtnText += "<br/>";
+      demo.innerHTML = rtnText;
+    }
+  </script>
+
+    <!-- 2 -->
+  <script>
+    'use strict'
+    function ArrChange(){
+      let rtnText ="consol 확인";
+      demo.innerHTML = rtnText;
+      console.clear();
+
+      let arrT = [30,20,50,40,10];   // int[] atom[] = {"","",""};
+      console.log("1===========================");
+      console.log("arrT :", arrT);
+      console.log("arrT.length :", arrT.length);
+
+      console.log("");
+      console.log("2===========================");
+      arrT.push(25 , 30); //push() 뒤에 삽입
+      console.log("push(25 , 30)");
+      console.log("arrT :", arrT);
+
+      arrT.pop(); //pop() 뒤에 제거
+      console.log("pop()");
+      console.log("arrT :", arrT);
+
+      arrT.unshift(100 , 20); //unshift() 앞에 삽입
+      console.log("unshift(100 , 20)");
+      console.log("arrT :", arrT);
+
+      arrT.shift(); //shift() 앞에 제거
+      console.log("shift()");
+      console.log("arrT :", arrT);
+
+      arrT.splice(2, 1); //splice( x , n) arr[x]에서 n개 제거
+      console.log("splice(2, 1)");
+      console.log("arrT :", arrT);
+
+      console.log("");
+      console.log("3===========================");
+      console.log("시작 :", arrT);
+      let arrSubT = arrT;
+      let arrT_1 = arrSubT.slice(2); //arr.slice(x) arr2[x]부터 끝까지 삽입
+      console.log("arrT.slice(2)");
+      console.log("arrT_1 :", arrT_1);
+
+      arrSubT = arrT;
+      let arrT_2 = arrSubT.slice(2,4); // arr.slice(s , e) arr2[s]부터 rr2[e-1]까지 삽입
+      console.log("arrT.slice(2,4)");
+      console.log("arrT_2 :", arrT_2);
+
+// arr2.concat(arr1)  arr1 뒤에 arr2 삽입
+      let arrT_3 = arrT_1.concat(arrT_2);  // arr1.concat(arr2)  arr1 뒤에 arr2 삽입
+      console.log("arrT_1.concat(arrT_2)");
+      console.log("arrT_3 :", arrT_3);
+
+      console.log("");
+      console.log("4===========================");
+
+      console.log("indexOf1 : "+arrT_3.indexOf(50)); //arr1.indexOf(X) arr1에서 값이 X인 배열 번호 출력 
+      console.log("indexOf2 : "+arrT_3.indexOf(-99));//arr1.indexOf(X) arr1에서 값이 X이 없으면, -1 출력
+      console.log("indexOf(40, 1) : "+arrT_3.indexOf(40, 1)); //arr1.indexOf(X, n) arr1[n]에서부터 값이 X인 배열 번호 출력
+      console.log("indexOf(40, indexOf(40)+1) : "+arrT_3.indexOf(40, arrT_3.indexOf(40)+1)); //첫번째 값 이후 다음 돟일 값을 찾을 수 있다.
+      console.log("lastIndexOf1 : "+arrT_3.lastIndexOf(50)); //arr1.lastIndexOf(X) 뒤에서부터 X 존재 : arr1.length
+      console.log("lastIndexOf2 : "+arrT_3.lastIndexOf(-99)); //arr1.lastIndexOf(X) 뒤에서부터  X 미존재 -1
+      console.log("includes1 : "+arrT_3.includes(50)); //arr1.includes(X) arr1에서 X의 존재 유무 : 존재 true
+      console.log("includes2 : "+arrT_3.includes(-99)); //arr1.includes(X) arr1에서 X의 존재 유무 : 미존재 false
+
+    }
+    
+  </script>
+  <!-- 3 -->
+  <script>
+    'use strict'
+    function ArrUse(){
+      let rtnText ="consol 확인";
+      demo.innerHTML = rtnText;
+      console.clear();
+      let arrT = ["b","c","hijk","a","f","faa"]; 
+      let arrT2 = [30,20,50,40,10]; 
+      let arrSubT =new Array();
+      console.log("");
+      console.log("1===========================");
+      console.log("시작 : "+arrT);
+      arrSubT = arrT;
+      let str1 = arrSubT.join('-'); //배열의 사이에 연결되는 고리가 -으로 출력 
+      console.log("join('-')");
+      console.log("str1 :", str1);
+
+      console.log("");
+      console.log("2===========================");
+      console.log("시작 : " , arrT);
+      arrSubT = arrT;
+      let sort = arrSubT.sort();
+      console.log("sort :", sort);
+      arrSubT = arrT;
+      let reverse = arrSubT.reverse();
+      console.log("reverse :", reverse);
+      arrSubT = arrT;
+      let max = Math.max(...arrSubT);
+      console.log("Math.max(arrT) :", max);
+      arrSubT = arrT;
+      let min = Math.max(...arrSubT);
+      console.log("Math.min(arrT) :", min);
+
+      console.log("");
+      console.log("3===========================");
+      console.log("시작 : " , arrT);
+      
+      arrSubT = arrT;
+      let res1 = arrSubT.filter(function(data, idx) {console.log(data, " : " , idx);});
+      console.log("filter(function(data, idx)");
+      console.log("res1 :", res1);
+      res1 = arrSubT.filter(function(data, idx) { return data});
+      console.log("filter(function(data, idx) {return data})");
+      console.log("res1 :", res1);
+
+      arrSubT = arrT;
+      console.log("");
+      let res2 = arrSubT.filter((data, idx) => console.log(data, " : " , idx));
+      console.log("filter((data, idx) =>");
+      console.log("res2 :", res2);
+      res2 = arrSubT.filter((data, idx) => data);
+      console.log("filter((data, idx) => data");
+      console.log("res2 :", res2);
+
+      arrSubT = arrT;
+      console.log("");
+      let res3 = arrSubT.filter((data, idx) => idx % 2 == 0);
+      console.log("filter((data, idx) => idx % 2 == 0)");
+      console.log("res3 :", res3);
+
+      arrSubT = arrT;
+      console.log("");
+      let res4 = arrSubT.filter((data, idx) => idx % 2 == 0).reverse();
+      console.log("arrSubT.filter((data, idx) => idx % 2 == 0).reverse()");
+      console.log("res4 :", res4);
+
+      arrSubT = arrT;
+      console.log("");
+      let res5 = arrSubT.reverse().filter((data, idx) => idx % 2 == 0);
+      console.log("arrSubT.reverse().filter((data, idx) => idx % 2 == 0)");
+      console.log("res5 :", res5);
+
+      arrSubT = arrT;
+      console.log("");
+      let res6 = arrSubT.reverse().filter((data, idx) => idx % 2 == 0).sort();
+      console.log("arrSubT.reverse().filter((data, idx) => idx % 2 == 0).sort()");
+      console.log("res6 :", res6);
+    }
+
+  </script>
+
+</head>
+<body> 
+  <!-- 결과 출력 -->
+  <div class="demoView">
+    <strong style="font-size: 20px;">결과 출력창  &nbsp; &nbsp; &nbsp; &nbsp;
+      <input type="button" value="초기화" onclick=" demoReset()">
+      <br/><hr/><br/>
+    </strong>
+  
+    <div id="demo"></div>
+  </div>
+
+  <p><br/></p>
+  <div class="container" style="border: 1px solid black; margin: 20px; padding: 20px">
+    <h2>1 배열 </h2><br/>
+    <div  type="button" onclick="ArrType() "  class="bgG4 lintH50px" >1.배열 타입 </div>
+    <div  type="button" onclick="ArrChange() "  class="bgB4 lintH50px" >2.배열 수정 </div>
+    <div  type="button" onclick="ArrUse() "  class="bgR4 lintH50px" >3.배열 응용 </div>
+
+  </div>
+
+</body>
+</html>

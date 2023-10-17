@@ -1,0 +1,150 @@
+body {
+  background-color: beige;
+  font-size: 8pt;
+}
+
+
+.divT {
+  font-size: 15pt;
+  color: red;
+  background-color: aqua;
+
+}
+
+.spanT {
+  font-size: 20pt;
+  color: blue;
+  background-color: gold;
+
+}
+
+.spanT:hover { /* 마우스가 닿으면 */
+  text-decoration: underline;
+  cursor: pointer; /* 손가락 형태로 보여준다 */
+  color: red;
+}
+
+.spanT:active {  /* 클릭시 */
+  text-decoration: overline;
+  color: green;
+}
+
+.fwlighter{
+  font-weight: lighter;   /* 상속된 값보다 얇은 굵기 */
+}
+.fwbolder{
+  font-weight: bolder;   /* 상속된 값보다 굵은 굵기 */
+}
+.fw20px{
+  font-size: 20px;
+}
+.ffalily{
+  font-family: 'Times New Roman', Times, serif;
+  /* 폰트 사용 우선 순위가 있고 폰트가 없으면 뒤에 폰트 사용 */
+  /*  'Times New Roman' 이 없다면 Times -> serif */
+}
+
+.sentence{
+  color: burlywood;
+  /* word-break: normal;word-wrap: break-word; */
+  /* word-wrap: break-word;	 */
+  /* 재확인 필요 */
+  /* 칸이 넘어서서 줄바꿈이 일어나는 경우, 단어 단위로 내린다. */
+}
+
+.borderSet{
+  
+  width: 20%;
+  border: 1px solid green;
+}
+
+.textCenter{
+  text-align: center;
+  line-height: 100px;
+  width: 300px;
+  height: 200px;
+  border-width: 2px;
+  overflow: hidden; 
+
+}
+
+.textCenter2{
+  text-align: center;
+  line-height: 100px;
+  width: 300px;
+  height: 100px;
+  margin: 10px 10px;
+  text-decoration: line-through;
+  overflow: auto;
+}
+
+.container {
+  line-height: 30pt;
+}
+input[type="text"] { /* input 중 type이 text인 경우만 */
+  color: blue;
+  background-color: burlywood;
+  font-size: 15pt;
+}
+
+
+.boxT{
+  width: 400px;
+  height: 600px;
+  background-color: pink;
+}
+
+.boxT div{
+  width: 200px;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  border: 1px solid #000;
+  background-color: yellow;
+}
+.boxT div:nth-of-type(2){
+  background-color: green;
+}
+.boxT div:nth-child(2){
+  background-color: aqua;
+}
+
+.Pos1{
+  z-index: 1;
+}
+.Pos2{
+  background-color: blueviolet;
+  position: absolute;
+  top: 150px;
+  left: 50px;
+  z-index: 2;
+}
+.Pos3{
+  position: relative;
+  top: 200px;
+  left: 50px;
+  background-color: burlywood;
+  z-index: 3;
+}
+.Pos4{
+  position: fixed;
+  /* top만 있어도 동작 but left right만 있으면 생성X */
+  top: 50px;
+  right: 20px;
+  background-color: chocolate;
+  z-index: 40;
+}
+
+.Pos5{
+  position: sticky;
+  /* top만 있어도 동작 but left right만 있으면 생성X */
+  opacity: 0.6;
+  top: 10px;
+  right: 20px;
+  background-color: chocolate;
+  z-index: 5;
+}
+
+
+
+

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>html 기본 선택자 및 css 선택</title>
+  <link rel="stylesheet" type="text/css" href="1.cssBase.css">  <!-- (외부스타일) -->
+  <style> 
+  /* (내부스타일) */
+    p {   /* 태그 선택자 */
+      font-size: 12pt;
+    }
+    #mbc {   /* 아이디 선택자 */
+      color: red;
+    }
+    .mbc {   /* 클래스 선택자 */
+      color: yellow;
+    }
+    p.mbc {   /* 혼합 선택자 */
+      color: orange;
+    }
+  </style>
+</head>
+<body>
+  <p>Casecading Style Sheet 연습1</p>
+  <h2>Casecading Style Sheet 연습2</h2>
+  <h3>Casecading Style Sheet 연습3</h3>
+  <h4 style="font-size: 30pt;">Casecading Style Sheet 연습4</h4>  <!-- (인라인:InLine Style) -->
+
+</body>
+</html>
