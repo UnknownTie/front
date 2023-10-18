@@ -194,10 +194,19 @@
 
       console.log("");
       console.log("2===========================");
-      console.log("시작 : " , arrT);
-      arrSubT = arrT;
-      let sort = arrSubT.sort();
-      console.log("sort :", sort);
+      console.log("시작 arrT: " , arrT);
+      console.log("시작 arrT2: " , arrT2);
+      console.log("");
+      arrSubT = arrT2;
+      let sort1 = arrSubT.sort();
+      console.log("sort1 :", sort1);
+      arrSubT = arrT2;
+      let sort2 = arrSubT.sort((a,b) => a-b); //오름차순 정렬
+      console.log("sort2 :", sort2);
+      arrSubT = arrT2;
+      let sort3 = arrSubT.sort((a,b) => b-a); //내림차순 정렬
+      console.log("sort3 :", sort3);
+
       arrSubT = arrT;
       let reverse = arrSubT.reverse();
       console.log("reverse :", reverse);
@@ -399,7 +408,7 @@
 
   }
 </script>
-<!-- 5 -->
+<!-- 6 -->
 <script>
   'use strict'
   function dateTime() {
@@ -448,6 +457,202 @@
     console.log("lastDate :", lastDate.getDate());
   }
 </script>
+
+<!-- 7 -->
+<script>
+  'use strict'
+
+  /*
+    자바스크립트 정규식 :   /[]/플러그인
+    [^] : [] 안의 ^는 부정의 의미
+    ^[] : [] 앞의 ^는 '처음(시작)'의 의미
+    []+ : [] 뒤의 +는 1개 이상,  *은 0개 이상, ? 0개나 1개
+    []+$: [] +$ []안의 문자가 1개 이상으로, 또 끝날수도 있다는것.
+    ( ) : 그룹
+    ?=.*  : 앞쪽 모두(.)일치를 반복(*) 한다.
+    w  : 알파벳(대/소문자), 숫자, 밑줄(_) 의 포함유무
+    자바스크립트에서의 한글은 유니코드에 완성된 코드로 등록되어 있기에 특수코드로 취급되지 않는다.
+  */
+
+  function regexCheck() {
+    let rtnText ="consol 확인";
+      demo.innerHTML = rtnText;
+      console.clear();
+    let content ="1";
+
+
+    //const regex1_1 = /[a-z]/g;   // 영문 소문자 포함 -> true
+
+
+
+    const regex0_1 = /\w/  // 영문자/숫자/_ 포함 -> true 
+    const regex0_2 = /\W/  // 영문자/숫자/_ 포함 -> false
+
+    const regex1_1 = /[a-z]/;   // 영문 소문자 포함 -> true
+    const regex1_2 = /[^a-z]/;   // 영문 소문자만 포함 -> false , 다른 문자 포함시, true
+
+    const regex2_1 = /[A-Z]/;    // 영문 대문자 포함 -> true
+    const regex2_2 = /[^A-Z]/;   // 영문 대문자만 포함 ->false , 다른 문자 포함시, true
+
+    const regex3_1 = /[0-9]/;    // 숫자를 포함 -> true
+    const regex3_1_1 = /[0-9]+$/;    // 숫자만 포함 -> true
+    const regex3_2 = /[^0-9]/;   // 숫자만 포함 -> false
+    const regex3_3 = /\d/  // 숫자을 포함 -> true
+    const regex3_4 = /\D/  // 숫자만 포함 -> false 
+
+    const regex4_1 = /[ㄱ-힣]/; // 한글을 포함 -> true
+    const regex4_2 = /[^ㄱ-힣]/;// 한글만 포함 -> false
+
+    const regexA1_1 = /[a-zA-Z0-9]/;  // 영문자와 숫자를 포함하고 있느냐?
+    const regexA1_2 = /[^a-zA-Z0-9]/;  // 영문자와 숫자만 포함하고 있느냐?
+    const regexA1_3 = /[^a-zA-Z0-9_]/;  // 아이디는 영문자 숫자 밑줄만 포함하느냐?
+
+
+    //---------------------------------------------------
+    console.log("");
+    console.log("------------------------------------------------");
+    // g를 사용할 경우, 오류 발생
+    // 다음 식을 찾을때는 lastindex에서부터 시작한다.
+    // 즉 이전에 5글자를 비교했다면, lastindex 5이고 
+    // 다음에 들어온 글자가 3글자라면, lastindex에 값이 없게 되고 false를 리턴하면서 lastindex가 0이된다.
+
+    //방안
+    //1. 정규식 확인 전에 lastIndex=0로 만들어준다.
+    //2. stirng 비교하는 "변수".search(정규식);
+    //3. 
+    console.log("g 정규식 오류 ");
+
+    const regexG_1 = /^[a-zA-z]+$/g;  
+    const regexGT_1 ="aaa";
+    console.log("변수 : "+regexGT_1);
+    console.log("g 정규식 : " + regexG_1);
+    console.log("g 정규식 ("+regexGT_1+")결과 : " + regexG_1.test(regexGT_1));
+    console.log("g 정규식 lastIndex: " + regexG_1.lastIndex);
+    console.log("g 정규식 ("+regexGT_1+")결과 : " + regexG_1.test(regexGT_1));
+    console.log("g 정규식 lastIndex: " + regexG_1.lastIndex);
+    console.log("g 정규식 ("+regexGT_1+")결과 : " + regexG_1.test(regexGT_1));
+    console.log("g 정규식 lastIndex: " + regexG_1.lastIndex);
+    regexG_1.lastIndex = 0
+    console.log("g 정규식 lastIndex 초기화: " + regexG_1.lastIndex );
+    console.log("g 정규식 lastIndex: " + regexG_1.lastIndex);
+    console.log("g 정규식 ("+regexGT_1+")결과 : " + regexG_1.test(regexGT_1));
+
+    console.log("------------------------------------------------");
+
+    content="1";
+    console.log("시작 : " + content);
+    //---------------------------------------------------
+    //영문자/숫자/_
+    console.log("");
+    console.log("영문자/숫자/_");
+
+    content="a1_A";
+    console.log("시작 : " + content);
+    if(regex0_1.test(content) == true)
+      console.log("1_1 영문자/숫자/_ 포함 : " + content);
+    if(regex0_1.test(content) == false)
+      console.log("1_1 영문자/숫자/_ 포함 X : " + content);
+    
+    if(regex0_2.test(content) == true)
+      console.log("0_2 영문자/숫자/_만 X: " + content);
+    if(regex0_2.test(content) == false)
+      console.log("0_2 영문자/숫자/_만 : " + content);
+
+    //---------------------------------------------------
+    //---------------------------------------------------
+    //소문자
+    console.log("");
+    console.log("소문자");
+
+    content ="a";
+    //const regex1_1 = /[a-z]/g;   // 영문 소문자 포함 -> true
+    if(regex1_1.test(content) )
+      console.log("1_1소문자 포함 : " + content);
+    if(!regex1_1.test(content) )
+      console.log("1_1소문자 포함 X : " + content);
+
+    if(regex1_2.test(content) == true)
+      console.log("1_2소문자만 X: " + content);
+    if(regex1_2.test(content) == false)
+      console.log("1_2소문자만  : " + content);
+
+    //---------------------------------------------------
+    console.log("");
+    console.log("대문자");
+
+    content ="aA";
+    if(regex2_1.test(content) == true)
+      console.log("2_1대문자 포함 : " + content);
+    if(regex2_1.test(content) == false)
+      console.log("2_1대문자 포함 X : " + content);
+
+    if(regex2_2.test(content)  == true)
+      console.log("2_2대문자만 X: " + content);
+    if(regex2_2.test(content) == false)
+      console.log("2_2대문자만 : " + content);
+
+    //---------------------------------------------------
+    console.log("");
+    console.log("숫자");
+
+    content ='1a';
+
+    if(regex3_1.test(content) == true)
+      console.log("3_1 숫자 포함 : " + content);
+    if(regex3_1.test(content) == false)
+      console.log("3_1 숫자 포함 X : " + content);
+
+    if(regex3_1_1.test(content) == true)
+      console.log("3_1-1 숫자만 포함 : " + content);
+    if(regex3_1_1.test(content) == false)
+      console.log("3_1-1 숫자만 포함 X : " + content);
+
+    if(regex3_2.test(content)  == true)
+      console.log("3_2 숫자만 X: " + content);
+    if(regex3_2.test(content) == false)
+      console.log("3_2 숫자만 : " + content);
+
+    if(regex3_3.test(content)  == true)
+      console.log("3_3 숫자 : " + content);
+    if(regex3_3.test(content) == false)
+      console.log("3_3 숫자 X : " + content);
+
+    if(regex3_4.test(content)  == true)
+      console.log("3_4숫자만 X : " + content);
+    if(regex3_4.test(content) == false)
+      console.log("3_4숫자만  : " + content);
+
+    //---------------------------------------------------
+    console.log("");
+    console.log("한글");
+
+    content ='ㄱa';
+    if(regex4_1.test(content) == true)
+      console.log("4_1한글 포함 : " + content);
+    if(regex4_1.test(content) == false)
+      console.log("4_1한글 포함 X : " + content);
+
+    if(regex4_2.test(content)  == true)
+      console.log("4_2한글만 X : " + content);
+    if(regex4_2.test(content) == false)
+      console.log("4_2한글만 : " + content);
+      
+
+
+    console.log("");
+    console.log("통과 : " + content);
+
+  }
+
+</script>
+<!-- 8 -->
+<script>
+  'use strict'
+  function regexUseCheck(){
+
+  }
+</script>
+
 </head>
 <body> 
   <!-- 결과 출력 -->
@@ -473,7 +678,8 @@
     <div  type="button" onclick="strUse() "  class="bgG4 lintH50px" >1.문자 </div>
     <div  type="button" onclick="nUse() "  class="bgB4 lintH50px" >2.숫자 </div>
     <div  type="button" onclick="dateTime() "  class="bgG4 lintH50px" >3.날짜 </div>
-
+    <div  type="button" onclick="regexCheck() "  class="bgB4 lintH50px" >4.정규식(기본) </div>
+    <div  type="button" onclick="regexUseCheck() "  class="bgG4 lintH50px" >4.정규식(사용) </div>
   </div>
 
 </body>

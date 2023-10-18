@@ -23,7 +23,7 @@
   background-color: gray;
   display: inline-block;
   width: 30%;
-
+  z-index: 5;
   position: fixed;
   top: 30px;
   right: 10px;
