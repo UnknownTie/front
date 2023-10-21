@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>window기본 js </title>
+  <link rel="stylesheet" href="./20231018_1jsClass.css">
+  <!-- <script src="./20231018_1jsClass.js"></script> -->
+
+
+  <script>
+    function demoReset(){
+      console.clear();
+      document.getElementById("demo").innerHTML ="";
+    }
+  </script>
+  <!-- 1 -->
+  <script>
+    'use strict';
+  
+      // 클래스 생성
+    class Member {
+      // 필드명 
+      //생략가능 (#이 있는 형태는 불가)
+      fieldA; 
+
+      //생성자 
+      //class 생성시, 실행 
+      //1. constructor의 속성을 다르게 중복 생성 X
+      //2. class 생성시,  앞에서부터 매개변수 삽입
+      // 변수 삽입이 많으면 : 매개변수 개수보다 많은 변수는 사라진다.
+      // 변수 삽입이 적으면 : 변수가 삽입이 안된 매개변수는 undefined 처리 된다.
+      // constructor() {   } 
+      //1. 매개변수 적은 케이스 
+      constructor(A1, A2 ) { 
+        this.fieldA = A1; 
+        this.functionA = A2;
+      }
+
+      //1. 매개변수 많은 케이스 
+      // constructor(A1, A2 ,A3, A4 ) { 
+      //   this.fieldA = A1; 
+      //   this.functionA = A2;
+      //   this.getTestA = A3; 
+      //   this.getTestB = A4;
+      // }
+
+      //get , set 조건 (get과 set은 무조건 함께 써야된다.)
+      //get,set은 _A ,#A 처럼 같은 변수로 사용해야된다.
+      //         A 직접 삽입시, 자신이 자신을 호출하여 무한 반복이 발생한다. 
+
+      //1. #A형태 : 외부에서 #A 접근 불가, private가 된다.
+      #TestA; //외부 사용 : TestA
+      get TestA() {
+        console.log("  get TestA()");
+        return this.#TestA;
+      }
+      // setter 생성
+      set TestA(A) {
+        console.log("  set TestA(A) " + A );
+        if(A < 1) A = 1;
+        this.#TestA = A;
+      }
+      
+      //2. _A형태 : 외부에서 _A 접근 후 수정가능
+      //외부 사용 : getTestB
+      get TestB() {
+        console.log("  get TestB()");
+        return this._TestB;
+      }
+      set TestB(A) {
+        console.log("  set TestB(A) " + A );
+        if(A < 1) A = 1;
+        this._TestB = A;
+      }
+
+      //Error A형태 , 무한 반복 -------------
+      get getError() {
+        console.log("  get getError()");
+        return this.getError;
+      }
+      // setter 생성
+      set getError(A) {
+        console.log("  set getError(A) " + A );
+        if(A < 1) A = 1;
+        this.getError = A;
+      }
+      //----------------------------------------
+      
+      // 자식 클래스는 생성자 X 
+      // 생성자
+      // constructor() {}
+
+  
+      // 메소드
+      // function Print(){ , function미사용
+      Print() {
+        console.log("class Member 메소드-------------------------");
+				console.log(" fieldA :", this.fieldA);
+				console.log(" functionA :", this.functionA);
+				console.log(" TestA :", this.TestA);
+				console.log(" TestB :", this.TestB);
+      }
+  
+    }
+  
+    function parentType(){
+      let rtnText ="consol 확인";
+      demo.innerHTML = rtnText;
+      console.clear();
+      // 클래스 호출
+      let member = new Member("A1","A2","A3" );
+  
+      console.log(" fieldA :", member.fieldA);
+      console.log(" functionA :", member.functionA);
+      console.log(" TestA :", member.TestA);
+      console.log(" TestB :", member.TestB);
+      
+      member.fieldA ="A";
+      member.functionA ="A";
+      member.TestA ="A";
+      member.TestB ="A";
+      console.log("");
+			member.Print();
+  
+      // member.#TestA ="C";
+      member._TestB ="C";
+			console.log("#TestB = C => Error");
+			console.log("_TestB = C : 직접 접근");
+			console.log(" TestA :", member.TestA);
+      console.log(" TestB :", member.TestB);
+    
+    }
+  
+  </script>
+
+<!-- 2 -->
+  <script>
+    'use stricrt'
+    class Children extends Member {
+
+			// 자식 class는 생성자 생성 X 
+      // constructor( ) {
+      //   this.mem = "1";
+      // }
+			mem(){
+        this.memA = "1";
+			}
+      Print(){
+        console.log("class children print()");
+				super.Print();	//부모의 Print 출력
+      }
+
+    }
+
+    function childrenType(){
+      let rtnText ="consol 확인";
+      demo.innerHTML = rtnText;
+      console.clear();
+
+      let children = new Children("A1" ); //해당 변수는 부모 생성자에 삽입
+
+			children.mem();
+			children.Print();
+
+    }
+  </script>
+
+<!-- 3 -->
+<script>
+  'use stricrt'
+  let newWindowA = Array();
+  let newWindowB;
+
+  function WindowCheck(){
+    let rtnText ="";
+      demo.innerHTML = rtnText;
+    console.clear();
+
+    let str = '';
+
+    str += '현재 있는 모니터 기준<br/> (더블 모니터시 해당 창이 있는 모니터 기준 출력) <br/><br/>';
+    str += '화면 해상도 가로크기 : ' + window.screen.width + "px<br/>";
+    str += '화면 해상도 세로크기 : ' + window.screen.height + "px<br/>";
+    str += '사용자 작업영업 가로크기 : ' + window.screen.availWidth + "px<br/>";
+    str += '사용자 작업영업 세로크기 : ' + window.screen.availHeight + "px<br/>";
+    str += '표현 가능 색상수 : ' + Math.pow(2, screen.colorDepth) + "<br/>";
+    str += '픽셀당 표현 가능 색상수 : ' + Math.pow(2, screen.pixelDepth) + "<br/>";
+
+    demo.innerHTML = str;
+  }
+
+  function WindowNewOpen(){
+    let rtnText ="신규 창을 연다. <br/> ";
+      demo.innerHTML = rtnText;
+    console.clear();
+      // window.open(URL, 윈도우이름, 옵션);
+      let url = "./childSite.html";
+      let windowName = "_blank";
+      let opt = "width=400px, left=0px, height=300px, top=300px ";
+
+      newWindowA.push( window.open(url, windowName, opt) );
+			console.log("A생성 : "+newWindowA);
+    	console.log("A생성 : "+newWindowA.length);
+  }
+  function WindowNewClose(){
+    let rtnText ="바로 직전의 창을 닫는다. <br/> 그 이전에 열었던 창은 그대로 열려있다.";
+		rtnText += "<br/> 변수의 배열 처리로 반복하면 뒤에서부터 닫힌다.";
+      demo.innerHTML = rtnText;
+    console.clear();
+
+		if(newWindowA.length > 0){
+			console.log(" : "+newWindowA);
+    	console.log("C : "+newWindowA.length);
+			newWindowA[newWindowA.length-1].close();
+			newWindowA.pop();
+		}
+  }
+
+	function WindowNewAllClose(){
+		let rtnText ="새창(반복)으로 출력한 모든 창을 닫는다";
+		demo.innerHTML = rtnText;
+		let Cnt = newWindowA.length - 1;
+		//뒤에서부터 지울때는 순서대로 지워진다.
+		for(let i = Cnt; i >= 0; i--){
+			//console.log(newWindowA);
+			newWindowA[i].close();
+			newWindowA.pop();
+		}
+		console.log("새창(반복) 개수 : "+newWindowA.length);
+		Cnt = newWindowA.length ;
+		//앞에서부터 지울때는 항상 0번째를 지워야한다.
+		// for(let i = 0; i < Cnt; i++){
+		// 	// console.log(newWindowA);
+		// 	newWindowA[0].close();
+		// 	newWindowA.shift();
+		// }
+	}
+
+
+  function WindowNewOpen2(){
+    let rtnText ="신규 창에 이름을 지정하고 연다. <br/> ";
+      demo.innerHTML = rtnText;
+    console.clear();
+
+      // window.open(URL, 윈도우이름, 옵션);
+      let url = "https://www.naver.com";
+      let windowName = "newWindow";
+      let opt = "width=400px, height=350px, top=400px, left=500px";
+
+      newWindowB = window.open(url, windowName, opt);
+  }
+
+  function WindowNewClose2(){
+    let rtnText ="하나의 창을 열때, 지정해준 name의 창이 닫힌다. <br/> ";
+      demo.innerHTML = rtnText;
+    console.clear();
+		if(newWindowB != undefined)
+    	newWindowB.close();
+  }
+
+</script>
+
+</head>
+<body> 
+  <!-- 결과 출력 -->
+  <div class="demoView">
+    <strong style="font-size: 20px;">결과 출력창  &nbsp; &nbsp; &nbsp; &nbsp;
+      <input type="button" value="초기화" onclick=" demoReset()">
+      <br/><hr/><br/>
+    </strong>
+  
+    <div id="demo"></div>
+  </div>
+
+  <p><br/></p>
+  <div class="container" style="border: 1px solid black; margin: 20px; padding: 20px">
+    <h2>1 클래스 </h2><br/>
+    <div  type="button" onclick="parentType() "  class="bgG4 lintH50px" >1.클래스(private) </div>
+    <div  type="button" onclick="childrenType() "  class="bgB4 lintH50px" >2.자식 클래스</div>
+  </div>
+
+
+  <div class="container" style="border: 1px solid black; margin: 20px; padding: 20px">
+    <h2>2 window 제어 </h2><br/>
+
+    <button type="button" onclick="WindowCheck()" class="btn btn-success">정보 확인</button><br/><br/>
+    <button type="button" onclick="WindowNewOpen()" class="btn btn-primary">새창(반복)</button>
+    <button type="button" onclick="WindowNewClose()" class="btn btn-success">새창(반복) 닫기</button>
+		<button type="button" onclick="WindowNewAllClose()" class="btn btn-success">새창(반복) 전체 닫기</button><br/><br/>
+    <button type="button" onclick="WindowNewOpen2()" class="btn btn-primary">새창(하나의 창)</button>
+    <button type="button" onclick="WindowNewClose2()" class="btn btn-success">새창(하나의 창) 닫기</button>
+  </div>
+
+</body>
+</html>

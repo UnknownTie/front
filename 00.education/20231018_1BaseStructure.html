@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>window기본 js </title>
+  <link rel="stylesheet" href="./20231018_1BaseStructure.css">
+  <script src="./20231018_1BaseStructure.js"></script>
+
+
+  <script>
+    function demoReset(){
+      console.clear();
+      document.getElementById("demo").innerHTML ="";
+    }
+  </script>
+  <!-- 1 -->
+  <script>
+    'use strict';
+
+    function parentType(){
+      let rtnText ="consol 확인";
+      demo.innerHTML = rtnText;
+      console.clear();
+      // 클래스 호출
+      let member = new Member("A1","A2","A3" ); //  클래스 생성 : "./20231018_1jsClass.js"
+  
+      console.log(" fieldA :", member.fieldA);
+      console.log(" functionA :", member.functionA);
+      console.log(" TestA :", member.TestA);
+      console.log(" TestB :", member.TestB);
+      
+      member.fieldA ="A";
+      member.functionA ="A";
+      member.TestA ="A";
+      member.TestB ="A";
+      console.log("");
+			member.Print();
+  
+      // member.#TestA ="C";
+      member._TestB ="C";
+			console.log("#TestB = C => Error");
+			console.log("_TestB = C : 직접 접근");
+			console.log(" TestA :", member.TestA);
+      console.log(" TestB :", member.TestB);
+    
+    }
+  
+  </script>
+
+<!-- 2 -->
+  <script>
+    'use stricrt'
+    class Children extends Member {
+
+			// 자식 class는 생성자 생성 X 
+      // constructor( ) {
+      //   this.mem = "1";
+      // }
+			mem(){
+        this.memA = "1";
+			}
+      Print(){
+        console.log("class children print()");
+				super.Print();	//부모의 Print 출력
+      }
+
+    }
+
+    function childrenType(){
+      let rtnText ="consol 확인";
+      demo.innerHTML = rtnText;
+      console.clear();
+
+      let children = new Children("A1" ); //해당 변수는 부모 생성자에 삽입
+
+			children.mem();
+			children.Print();
+
+    }
+
+  function reply1() {
+   
+    document.getElementById("demo").innerHTML = '함수사용1<br/> function reply1(){} ';
+  }
+
+  function reply4() {
+    document.getElementById("demo").innerHTML = "함수사용4<br/>함수를 변수로 사용<br/>   let reply = reply4; ";
+  }
+  let reply = reply4;
+
+  // 함수표현식(익명함수)
+  let reply2 = function() {
+    let i = Number("02");
+    document.getElementById("demo").innerHTML = `함수사용${i}<br/>함수표현식(익명함수) <br/>  let reply2 = function(){} <br/> <br/>  let i = Number("02")`;
+    return;
+  }
+
+  // 화살표 함수(Arrow Function)
+  let reply3 = () => {
+    
+    let i = parseInt("03");
+    document.getElementById("demo").innerHTML = "함수사용"+i+"<br/> 화살표 함수(Arrow Function) 3<br/> let reply3 = () => {}  <br/> <br/> let i = parseInt(\"03\");";
+  }
+
+  </script>
+
+<!-- 3 -->
+<script>
+  'use stricrt'
+  let newWindowA = Array();
+  let newWindowB;
+
+  function WindowCheck(){
+    let rtnText ="";
+      demo.innerHTML = rtnText;
+    console.clear();
+
+    let str = '';
+
+    str += '현재 있는 모니터 기준<br/> (더블 모니터시 해당 창이 있는 모니터 기준 출력) <br/><br/>';
+    str += '화면 해상도 가로크기 : ' + window.screen.width + "px<br/>";
+    str += '화면 해상도 세로크기 : ' + window.screen.height + "px<br/>";
+    str += '사용자 작업영업 가로크기 : ' + window.screen.availWidth + "px<br/>";
+    str += '사용자 작업영업 세로크기 : ' + window.screen.availHeight + "px<br/>";
+    str += '표현 가능 색상수 : ' + Math.pow(2, screen.colorDepth) + "<br/>";
+    str += '픽셀당 표현 가능 색상수 : ' + Math.pow(2, screen.pixelDepth) + "<br/>";
+
+    demo.innerHTML = str;
+  }
+
+  function WindowNewOpen(){
+    let rtnText ="신규 창을 연다. <br/> ";
+      demo.innerHTML = rtnText;
+    console.clear();
+      // window.open(URL, 윈도우이름, 옵션);
+      let url = "./20231018_1BaseStructure_child.html";
+      let windowName = "_blank";
+      let opt = "width=400px, left=0px, height=300px, top=300px menubar=no ";
+
+      newWindowA.push( window.open(url, windowName, opt) );
+			// console.log("A생성 : "+newWindowA);
+      console.log("newWindowA : "+newWindowA.length);
+  }
+  function WindowNewClose(){
+    let rtnText ="바로 직전의 창을 닫는다. <br/> 그 이전에 열었던 창은 그대로 열려있다.";
+		rtnText += "<br/> 변수의 배열 처리로 반복하면 뒤에서부터 닫힌다.";
+      demo.innerHTML = rtnText;
+    console.clear();
+		if(newWindowA.length > 0){
+			// console.log(" : "+newWindowA);
+      console.log("새창(반복) 닫기");
+      console.log("newWindowA : "+newWindowA.length);
+			newWindowA[newWindowA.length-1].close();
+
+			newWindowA.pop();
+		}
+  }
+
+	function WindowNewAllClose(){
+		let rtnText ="새창(반복)으로 출력한 모든 창을 닫는다";
+		demo.innerHTML = rtnText;
+		let Cnt = newWindowA.length - 1;
+		//뒤에서부터 지울때는 순서대로 지워진다.
+		for(let i = Cnt; i >= 0; i--){
+			newWindowA[i].close();
+			newWindowA.pop();
+		}
+    console.log("전체 새창(반복) 닫기");
+		console.log("newWindowA : "+newWindowA.length);
+		Cnt = newWindowA.length ;
+		//앞에서부터 지울때는 항상 0번째를 지워야한다.
+		// for(let i = 0; i < Cnt; i++){
+		// 	// console.log(newWindowA);
+		// 	newWindowA[0].close();
+		// 	newWindowA.shift();
+		// }
+	}
+
+
+  function WindowNewOpen2(){
+    let rtnText ="신규 창에 이름을 지정하고 연다. <br/> ";
+      demo.innerHTML = rtnText;
+    console.clear();
+
+      // window.open(URL, 윈도우이름, 옵션);
+      let url = "https://www.naver.com";
+      let windowName = "newWindow";
+      let opt = "width=400px, height=350px, top=400px, left=500px";
+
+      newWindowB = window.open(url, windowName, opt);
+  }
+
+  function WindowNewClose2(){
+    let rtnText ="하나의 창을 열때, 지정해준 name의 창이 닫힌다. <br/> ";
+      demo.innerHTML = rtnText;
+    console.clear();
+		if(newWindowB != undefined)
+      newWindowB.close(); 
+  }
+
+</script>
+
+<!-- 4 -->
+<script>
+  'use strict';
+  //  setTimeout( 함수 , 시간[msec]);  시간[msec] 이후 함수 동작  
+  // clearTimeout : timeout 해제
+
+  function sleep(ms) {
+  const wakeUpTime = Date.now() + ms;
+  while (Date.now() < wakeUpTime) {}
+  console.log("sleep 완");
+  }
+
+  function sleepTest(){
+    console.log("sleepTest 1");
+    sleep(1000);
+    console.log("sleepTest 2");
+  }
+
+  function setTimeoutPrint(strPrint){
+    console.log(strPrint);
+  }
+
+  function setTimeoutTest(){
+    console.log("setTimeoutTest 1");
+    //setTimeout 주의 : 매개변수가 존재하는 함수의 변수는 초 다음에 값을 넣어야된다. 
+    //아니면 바로 실행된다.
+    setTimeout(setTimeoutPrint , 1000 , "setTimeout 완");
+    console.log("setTimeoutTest 2");
+  }
+
+  let TimeSleepA;
+  function setTimeoutTestCheck(){
+    console.log("setTimeout 사용시 주의!!");
+    console.log("1. setTimeout 작업이 완료되기 전에 clearTimeout() 초기화시 함수 출력 X");
+    console.log("setTimeoutTestCheck 1");
+    TimeSleepA = setTimeout(setTimeoutPrint  , 1000 , "setTimeoutTestCheck 완");
+
+
+    console.log("setTimeoutTestCheck 2");
+    clearTimeout(TimeSleepA);
+
+    //setTimeout 주의 : 매개변수가 존재하는 함수의 변수는 초 다음에 값을 넣어야된다. 
+    //아니면 바로 실행된다.
+    console.log("2. setTimeout 주의 : 매개변수가 존재하는 함수의 변수는 초 다음에 값을 넣어야된다.");
+    console.log("setTimeoutTestCheck 3");
+    TimeSleepA = setTimeout(setTimeoutPrint("setTimeoutTestCheck 완")  , 1000);
+    console.log("setTimeoutTestCheck 4");
+
+  }
+
+  let num = 0;
+  let TimeSleep;
+  
+  function plus() {
+    clearTimeout(TimeSleep);
+    console.log("plus");
+    num++;
+    TimeSleep = setTimeout(plus , 500);
+
+    demo.innerHTML = num;
+  }
+
+  function minus() {
+    clearTimeout(TimeSleep);
+    console.log("minus");
+    num--;
+    TimeSleep = setTimeout(minus , 500);
+
+    demo.innerHTML = num;
+  }
+
+  function stop() {
+    console.log("stop");
+    clearTimeout(TimeSleep);
+  }
+
+</script>
+
+<script> 
+  // setInterval( 함수 , 시간[msec]);  시간[msec]마다 함수 동작  
+  // clearInterval : setInterval 해제
+  let numCheck=0;
+  let statusTimer;
+  let bPlus = true;
+
+  function timerStrat(){
+    console.log("timerStrat");
+    if(statusTimer ==undefined)
+      statusTimer = setInterval(calc , 500);
+  }
+
+  function timerStop() {
+    console.log("stop");
+    clearInterval(statusTimer);
+    statusTimer=undefined;
+    console.log("numCheck : " + numCheck +" 동작 후 종료");
+    numCheck=0;
+  }
+
+  function calc(){
+    if(bPlus == true)
+      numCheck++;
+    else
+      numCheck--;
+
+    demo.innerHTML =  clock() + numCheck;
+  }
+
+  function timerPlus() {
+    console.log("TimerPlus");
+    bPlus = true;
+  }
+  function timerMinus() {
+    console.log("TimerMinus");
+    bPlus = false;
+  }
+
+  function clock() {
+    let today = new Date();
+    let hh = today.getHours();
+    let mm = today.getMinutes();
+    let ss = today.getSeconds();
+    //demo.innerHTML = hh + " : " + mm + " : " + ss;
+    return "현재시간 <br/>" + hh + " 시 " + mm + " 분 " + ss +" 초<br/><hr><br/>";
+  }
+
+</script>
+
+<script>
+  let idx=0;
+  let cnt=0;
+  // let netText ="";
+  let newText ="";
+  // 3. 버튼을 클릭할때마다 입력박스를 추가한다.(삭제버튼 추가)
+    function inputBox() {
+    console.log("동일 함수 AAA");
+  }
+
+  // 4. 클릭시마다 입력박스에 고유번호를 설정한다.
+  function inputBox() {
+    console.log("동일 함수 존재시 뒤에 생성한 함수 적용");
+  
+    idx++;
+    cnt++;
+    newText = '';
+    newText += '<div id="productBox'+idx+'">';
+    newText += idx + '.<input type="text" name="product" id="product'+idx+'" class="mb-2 mr-3" />';
+    newText += '<input type="button" value="'+idx+'.삭제" onclick="deleteBox('+idx+')" class="btn-sm btn-danger" /><br/>';
+    newText += '</div>';
+    demo.innerHTML += newText;
+  }
+
+  function deleteBox(idx) {
+    cnt--;
+
+    let productBox = "productBox" + idx;
+    let item = document.getElementById(productBox);
+    item.remove(item);
+
+    console.log(idx + "삭제"); 
+
+  }
+
+  
+  function listSort() {
+    newText="재정렬 <br/><br/>";
+
+    for(idx=1; idx<=cnt; idx++){
+      newText += '<div id="productBox'+idx+'">';
+      newText += idx + '.<input type="text" name="product" id="product'+idx+'" class="mb-2 mr-3" />';
+      newText += '<input type="button" value="'+idx+'.삭제" onclick="deleteBox('+idx+')" class="btn-sm btn-danger" /><br/>';
+      newText += '</div>';
+    }
+    idx--;
+    demo.innerHTML = newText;
+
+  }
+
+</script>
+
+</head>
+<body> 
+  <!-- 결과 출력 -->
+  <div class="demoView">
+    <strong style="font-size: 20px;">결과 출력창  &nbsp; &nbsp; &nbsp; &nbsp;
+      <input type="button" value="초기화" onclick=" demoReset()">
+      <br/><hr/><br/>
+    </strong>
+  
+    <div id="demo"></div>
+  </div>
+
+  <p><br/></p>
+  <div class="container" style="border: 1px solid black; margin: 20px; padding: 20px">
+    <h2>1 클래스 </h2><br/>
+    <div  type="button" onclick="parentType() "  class="bgG4 lintH50px" >1.클래스(private) </div>
+    <div  type="button" onclick="childrenType() "  class="bgB4 lintH50px" >2.자식 클래스</div> <br/>
+    
+    <input type="button" value="함수 사용1" onclick="reply1()" class="btn btn-warning mr-2"/>
+    <input type="button" value="함수 사용2" onclick="reply()" class="btn btn-info mr-2"/>
+    <input type="button" value="함수 사용3" onclick="reply2()" class="btn btn-danger mr-2"/>
+    <input type="button" value="함수 사용4" onclick="reply3()" class="btn btn-success"/>
+  </div>
+
+
+  <div class="container" style="border: 1px solid black; margin: 20px; padding: 20px">
+    <h2>2 window 제어 </h2><br/>
+    <button type="button" onclick="WindowCheck()" class="btn btn-success">정보 확인</button><br/><br/>
+    <button type="button" onclick="WindowNewOpen()" class="btn btn-primary">새창(반복)</button>
+    <button type="button" onclick="WindowNewClose()" class="btn btn-success">새창(반복) 닫기</button>
+		<button type="button" onclick="WindowNewAllClose()" class="btn btn-success">새창(반복) 전체 닫기</button><br/><br/>
+    <button type="button" onclick="WindowNewOpen2()" class="btn btn-primary">새창(하나의 창)</button>
+    <button type="button" onclick="WindowNewClose2()" class="btn btn-success">새창(하나의 창) 닫기</button>
+  </div>
+
+  <div class="container" style="border: 1px solid black; margin: 20px; padding: 20px">
+    <h2>3. 시간 </h2><br/>
+
+    <div style="border: 1px solid black; margin-bottom: 20px; padding-left: 20px;">동기 <br/> 함수로 생성 Sleep<br/><br/>
+      <input type="button" value="동기식 Sleep" onclick="sleepTest()" class="btn btn-warning" /> <br/> <br/>
+      <input type="button" value="비동기식 setTimeout" onclick="setTimeoutTest()" class="btn btn-success" />
+      <input type="button" value="비동기식 setTimeout 오류" onclick="setTimeoutTestCheck()" class="btn btn-danger" /> <br/> <br/>
+      <br/><br/>
+    </div>
+
+    <div style="border: 1px solid black; margin-bottom: 20px; padding-left: 20px;">비동기 <br/>setTimeout , clearTimeout (sleep과 유사하나 비동기)<br/><br/>
+      <input type="button" value="증가" onclick="plus()" class="btn btn-success" />
+      <input type="button" value="감소" onclick="minus()" class="btn btn-primary" />
+      <input type="button" value="정지" onclick="stop()" class="btn btn-danger" />
+      <br/><br/>
+    </div>
+
+    <div style="border: 1px solid black; margin-bottom: 20px; padding-left: 20px;">비동기 <br/>setInterval , clearInterval (반복 동작)<br/><br/>
+      <input type="button" value="타이머 시작" onclick="timerStrat()" class="btn btn-success" />
+      <input type="button" value="타이머 종료" onclick="timerStop()" class="btn btn-danger" /> <br/>  <br/> 
+      <input type="button" value="증가" onclick="timerPlus()" class="btn btn-success" />
+      <input type="button" value="감소" onclick="timerMinus()" class="btn btn-primary" />
+      <br/><br/>
+    </div>
+  </div>
+
+  <div class="container" style="border: 1px solid black; margin: 20px; padding: 20px">
+    <h2>4 innerHTML 사용 </h2><br/>
+    <input type="button" value="입력창추가" onclick="inputBox()" class="btn btn-success" />
+    <input type="button" value="입력창재정렬" onclick="listSort();" class="btn btn-primary" />
+    <input type="button" value="입력창모두제거" onclick="location.reload();" class="btn btn-danger" />
+  
+  </div>
+
+</body>
+</html>

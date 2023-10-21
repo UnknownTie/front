@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> 미사용중 </title>
+  <link rel="stylesheet" href="./20231020_1jQuery.css">
+  <!-- jQeru 사용시 가져와야된다 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!-- <script src="./20231020_1jQuery.js"></script> -->
+
+
+  <script>
+    function demoReset(){
+      console.clear();
+      document.getElementById("demo").innerHTML ="";
+    }
+  </script>
+  <!-- 1 -->
+  <script>
+    'use strict';
+    
+    //
+    // jQuery 기본 세팅 (1~4 동일)
+    //1
+    jQuery(document).ready(function() {  console.log("read1. jQuery(document).ready(function()");});
+    //2
+    $(document).ready(function() {console.log("read2. $(document).ready(function()");});
+    //3
+    $(function() { console.log("read3. $(function()"); });
+    //4
+    $(function() {
+      //jQuery로 css 사용
+      //1.$("#아이디").css 2. $(".클래스").css
+      //1 개별
+      $("#title1").css("backgroundColor","blue"); // id
+      $(".jQueryindigo").css("Color","indigo");  
+      //2 배열
+      $(".jQuerybgBlue").css({
+        "backgroundColor":"#aa0" ,
+        "color":"green"
+      });
+
+    });
+  </script>
+  <style>
+    
+    .inCss{
+      background-color: aqua;
+      color: indigo;
+    }
+
+    #title1{
+      /* background-color: #aa0; */
+    }
+  </style>
+
+
+  <script>
+    // jQuery 함수사용 (click 이벤트에 id를 가지고 동작)
+
+    function lankSort(){
+      return `
+      <h4>css 우선 순위</h4>
+        <div > 
+          <div style="background-color: white; border: 1px solid black; padding: 10px;">
+            style 적용 등급 <br/>
+            jQuery css class 설정이 최우선 적용 (전체 적용된 상태)<br/>
+            외부 css 설정 < 내부 css 설정 < 인라인 style 설정 < jQuery css id 설정 < jQuery css class 설정
+          </div>
+          <div id="title1" class="jQueryindigo bgB4 inCss" style="background-color: white;">
+            &nbsp; 1 <br/>
+            &nbsp; 자신 : 외부 , 내부 , 인라인 , jQueryId <br/>
+            &nbsp; jQueryId 적용
+              <div id="title1" class="jQueryindigo bgB4 inCss" style="background-color: white;">
+                &nbsp;&nbsp;&nbsp;&nbsp; 1-1  <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 , 내부 , 인라인 , jQueryId <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 , 내부 , 인라인 , jQueryId <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp; 인라인 적용<br/>
+                <!-- &nbsp;&nbsp;&nbsp;&nbsp; (jQueryId 는 위에서 썼으면 아래서 재동작 X) -->
+                <div id="title1" class="jQueryindigo bgB4 inCss" style="background-color: white;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1-1-1  <br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 , 내부 , 인라인 , jQueryId <br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 , 내부 , 인라인 , jQueryId <br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 인라인 적용<br/>
+                  <!-- &nbsp;&nbsp;&nbsp;&nbsp; (jQueryId 는 위에서 썼으면 아래서 재동작 X) -->
+                </div>
+                <div id="title1" class="jQueryindigo bgB4 inCss" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1-1-2 <br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 , 내부 , 인라인 , jQueryId <br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 , 내부 , jQueryId <br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 내부 적용
+                </div>
+                <div id="title1" class="jQueryindigo bgB4" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1-1-3 <br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 , 내부 , 인라인 , jQueryId <br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 ,  jQueryId <br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 외부 적용
+                </div>
+              </div>
+              <div id="title1" class="jQueryindigo bgB4 inCss" >
+                &nbsp;&nbsp;&nbsp;&nbsp; 1-2 <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 , 내부 , 인라인 , jQueryId <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 , 내부 , jQueryId <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp; 내부 적용
+              </div>
+              <div id="title1" class="jQueryindigo bgB4 " >
+                &nbsp;&nbsp;&nbsp;&nbsp; 1-3 <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp; 부모 접근자 : 외부 , 내부 , 인라인 , jQueryId <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 ,  jQueryId <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp; jQueryId 적용
+              </div>
+          </div>
+          <br/>
+          <div id="title1" class="jQueryindigo bgB4 inCss" >
+            &nbsp; 2. (1번 jQueryId를 이미 사용했다)<br/>
+            &nbsp; 자신 : 외부 , 내부 , jQueryId <br/>
+            &nbsp; 내부 적용
+            <div id="title1" class="jQueryindigo bgB4 inCss" >
+              &nbsp;&nbsp;&nbsp;&nbsp; 2-1.<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 , 내부 , jQueryId <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 내부 적용
+            </div>
+            <div id="title1" class="jQueryindigo bgB4 " >
+              &nbsp;&nbsp;&nbsp;&nbsp; 2-2 <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 , 내부 , jQueryId <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 ,  jQueryId <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 외부 적용
+            </div>
+          </div>
+          <div id="title1" class="jQueryindigo bgB4 " >
+            &nbsp; 3 <br/>
+            &nbsp; 부모 : 외부 , 내부 , 인라인 , jQueryId <br/>
+            &nbsp; 자신 : 외부 ,  jQueryId <br/>
+            &nbsp; jQueryId 적용
+            <div id="title1" class="jQueryindigo bgB4 inCss"  style="background-color: white;" >
+              &nbsp;&nbsp;&nbsp;&nbsp; 3-1.<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 ,  jQueryId <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 , 내부 , 인라인 , jQueryId <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 인라인 적용
+            </div>
+            <div id="title1" class="jQueryindigo bgB4 inCss" >
+              &nbsp;&nbsp;&nbsp;&nbsp; 3-2.<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 ,  jQueryId <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 , 내부 , jQueryId <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 내부 적용
+            </div>
+            <div id="title1" class="jQueryindigo bgB4 " >
+              &nbsp;&nbsp;&nbsp;&nbsp; 3-3 <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 ,  jQueryId <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 ,  jQueryId <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 외부 적용
+            </div>
+          </div>
+        </div>
+      `;
+    }
+      
+    
+    $(function() {
+      // $("#아이디").jQuery함수(함수(){})
+      // $(".클래스").jQuery함수(함수(){})
+      $("#calcBtn1").click(function() {
+        console.log('$("#calcBtn1").click(function()');
+
+        let product = $("#product").val();
+        let price = $("#price").val();
+
+        $("#price").select(); 
+        $("#price").focus(); 
+
+        let str = product + "의 가격은? " + numberWithCommas(price) +"<br/><br/><br/>"; //1000단위 콤마 
+
+        str += lankSort();
+        //출력방법
+        //1. js text
+        // demo.innerHTML = str;
+        //2. jQery html
+        // $("#demo").html(str); 
+        //3. jQery text
+        //$("#demo").text(str);
+        $("#demo").html(str);
+      });
+    });
+    //jQuery 내부에서 사용하는 함수가 jQuery 생성 내부에 있지않아도 된다.
+    function numberWithCommas(num) {
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+    }
+  </script>
+
+  <script>
+    // jQuery 함수사용 (click 이벤트에 id를 가지고 동작)
+    $(function() {
+      // $("#아이디").jQuery함수(함수(){})
+      // $(".클래스").jQuery함수(함수(){})
+      $("#cssTest2").click(function() {
+        console.log('$("#cssTest2").click(function()');
+        let str ="";
+        $("#demo").html(str);
+        str += `<div style="border: 1px solid black; margin-bottom: 20px; padding-left: 20px;">비동기 <br/>`;
+          str += ` <span>setInterval , clearInterval (반복 동작)<br/><br/></span>`;
+        str += `  <input type="button" id="btn2_1" value="버튼1" onclick="timerStrat()" class="btn btn-success" />`;
+        str += `  <input type="button" id="btn2_2" value="버튼2" onclick="timerStop()"  class="btn btn-danger" /> <br/>  <br/> `;
+        str += `  <input type="button" id="btn2_3" value="버튼3" onclick="timerPlus()"  class="btn btn-success" />`;
+        str += `  <input type="button" id="btn2_4" value="버튼4" onclick="timerMinus()" class="btn btn-primary" />`;
+        str += `  <br/><br/>`;
+        str += `</div>`;
+
+        $("#demo").html(str);
+      });
+
+    });
+
+  </script>
+
+
+</head>
+<body> 
+  <!-- 결과 출력 -->
+  <div class="demoView">
+    <strong >결과 출력창  &nbsp; &nbsp; &nbsp; &nbsp;
+      <input type="button" value="초기화" onclick=" demoReset()">
+      <br/><hr/><br/>
+    </strong>
+  
+    <div id="demo"></div>
+  </div>
+
+  <p><br/></p>
+  <div class="container" style="border: 1px solid black; margin: 20px; padding: 20px">
+    <h2>1. jQery 함수  생성 및 동작  </h2><br/>
+    <h4>css 우선 순위</h4>
+
+    <span id="title1" class="jQueryindigo">*consol 확인</span><br/>
+    <span  class="jQuerybgBlue bgB4" style="background-color: white;">jQuery css 사용<br/>
+      <span  class="bgB4" style="background-color: white;">(css , 내부 style <  jQuery css 설정 < 인라인 style 설정)</span><br/>
+    </span>
+    <form name="myform1">
+      <h2> </h2>
+      <input type="text" id="product" value="냉장고" autofocus class="form-control mb-3" />
+      <input type="text" name="price" id="price" value="1000" class="form-control mb-3" />
+
+      <div  type="button" id="calcBtn1"  class="bgB4 lintH50px AA" >1. jQery 함수 동작 및 css 순위 </div>
+    </form>
+  </div>
+
+  <div class="container" style="border: 1px solid black; margin: 20px; padding: 20px">
+    <h2>1. css 사용  </h2><br/>
+    <form name="myform1">
+      <h2> </h2>
+
+      <div  type="button" id="cssTest2"  class="bgG4 lintH50px" >1. 색상 병경 </div>
+
+    </form>
+  </div>
+
+</body>
+</html>
