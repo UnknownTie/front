@@ -4,7 +4,8 @@
 /* 생 성 */
 @import url(../0.mycss/ericReset.css);
 @import url(../0.mycss/UerReset.css);
-
+@import url(../0.mycss/Color.css);
+@import url(../0.mycss/font.css);
 
 
 /* 기본 코드 */
@@ -20,11 +21,13 @@
 
 .demoView{
   border: 1px solid black;
-  background-color: gray;
+  background-color: bisque;
   display: inline-block;
   width: 30%;
-
+  height: 80%;
+  overflow: scroll;
   position: fixed;
   top: 30px;
   right: 10px;
+  z-index: 4;
 }

@@ -1,3 +1,5 @@
+/* 함께 참조시 하단에 있는 css 우선적용된다. */
+
 .bgR1 { background-color: rgba(255,50,50,0.1); }
 .bgR2 { background-color: rgba(255,50,50,0.2); }
 .bgR3 { background-color: rgba(255,50,50,0.3); }
@@ -25,6 +27,7 @@
 .bgB3 { background-color: rgba(50,50,255,0.3); }
 .bgB4 { background-color: rgba(50,50,255,0.4); }
 .bgB5 { background-color: rgba(50,50,255,0.5); }
+
 .bgB6 { background-color: rgba(50,50,255,0.6); }
 .bgB7 { background-color: rgba(50,50,255,0.7); }
 .bgB8 { background-color: rgba(50,50,255,0.8); }

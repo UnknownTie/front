@@ -1,0 +1,30 @@
+
+1. 부라우저 타입 확인 
+function isIE() {
+		return document.documentMode;
+}
+if (isIE()) {
+		alert('해당 사이트는 마이크로소프트의 IE 공식 서비스 중단으로 Internet Explorer 브라우저를 지원하지 않습니다. \nChrome, Firefox, Safari 혹은 Edge를 이용해 주시길 바랍니다.');
+		document.querySelector('body').style.display = 'none'
+}
+
+2. 네이버 , 카카오 로그인 
+	//sns로그인
+	function getSnsLogin(sns)
+	{
+			muAjax({
+					url: "/oauth/call",
+					method: "post",
+					data: {
+							sns : sns
+					}
+			}).then(function(data){
+					let result = JSON.parse(data);
+					location.href = result.apiUrl;
+			})
+	}
+
+<div class="sns_btn_wr btn_wr f_c">
+		<div class="button"><a href="#" class="btn_naver_login btn_sns btn" id="naverLogin" onclick="getSnsLogin('naver')">네이버 아이디로 로그인</a></div>
+		<div class="button"><a href="#" class="btn_kakao_login btn_sns btn kakao" id="kakaoLogin" onclick="getSnsLogin('kakao')">카카오 아이디로 로그인</a></div>
+</div>

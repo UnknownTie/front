@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> jQuery </title>
+  <link rel="stylesheet" href="./20231020_1jQuery.css">
+  <!-- jQeru 사용시 가져와야된다 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!-- <script src="./20231020_1jQuery.js"></script> -->
+
+  <script>
+    function demoReset(){
+      console.clear();
+      document.getElementById("demo").innerHTML ="";
+    }
+  </script>
+  <!-- 1 -->
+  <script>
+    'use strict';
+    
+    //
+    // jQuery 기본 세팅 (1~4 동일)
+    //1
+    jQuery(document).ready(function() {  console.log("read1. jQuery(document).ready(function()");});
+    //2
+    $(document).ready(function() {console.log("read2. $(document).ready(function()");});
+    //3
+    $(function() { console.log("read3. $(function()"); });
+    //4
+    $(function() {
+      //jQuery로 css 사용
+      //1.$("#아이디").css 2. $(".클래스").css
+      //1 개별
+      $("#title1").css("backgroundColor","blue"); // id
+      $(".jQueryindigo").css("Color","indigo");  
+      //2 배열
+      $(".jQuerybgBlue").css({
+        "backgroundColor":"red" ,
+        "color":"green"
+      });
+
+    });
+  </script>
+  <style>
+    
+    .inCss{
+      background-color: aqua;
+      color: indigo;
+    }
+
+    #title1{
+      /* background-color: #aa0; */
+    }
+  </style>
+
+
+  <script>
+    // jQuery 함수사용 (click 이벤트에 id를 가지고 동작)
+
+    function lankSort(){
+      return `
+        <h4>css 우선 순위</h4>
+
+        <div > 
+          <div style="background-color: white; border: 1px solid black; padding: 10px;">
+            style 적용 등급 <br/>
+            jQuery css class 설정이 최우선 적용 (전체 적용된 상태)<br/>
+            외부 css 설정 < 내부 css 설정 < 인라인 style 설정 < jQuery css id 설정 < jQuery css class 설정
+          </div>
+          <div id="title1" class="jQueryindigo bgB4 inCss" style="background-color: white;">
+            &nbsp; 1 <br/>
+            &nbsp; 자신 : 외부 , 내부 , 인라인 , jQueryId <br/>
+            &nbsp; jQueryId 적용
+              <div id="title1" class="jQueryindigo bgB4 inCss" style="background-color: white;">
+                &nbsp;&nbsp;&nbsp;&nbsp; 1-1  <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 , 내부 , 인라인 , jQueryId <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 , 내부 , 인라인 , jQueryId <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp; 인라인 적용<br/>
+                <!-- &nbsp;&nbsp;&nbsp;&nbsp; (jQueryId 는 위에서 썼으면 아래서 재동작 X) -->
+                <div id="title1" class="jQueryindigo bgB4 inCss" style="background-color: white;">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1-1-1  <br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 , 내부 , 인라인 , jQueryId <br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 , 내부 , 인라인 , jQueryId <br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 인라인 적용<br/>
+                  <!-- &nbsp;&nbsp;&nbsp;&nbsp; (jQueryId 는 위에서 썼으면 아래서 재동작 X) -->
+                </div>
+                <div id="title1" class="jQueryindigo bgB4 inCss" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1-1-2 <br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 , 내부 , 인라인 , jQueryId <br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 , 내부 , jQueryId <br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 내부 적용
+                </div>
+                <div id="title1" class="jQueryindigo bgB4" >
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1-1-3 <br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 , 내부 , 인라인 , jQueryId <br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 ,  jQueryId <br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 외부 적용
+                </div>
+              </div>
+              <div id="title1" class="jQueryindigo bgB4 inCss" >
+                &nbsp;&nbsp;&nbsp;&nbsp; 1-2 <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 , 내부 , 인라인 , jQueryId <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 , 내부 , jQueryId <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp; 내부 적용
+              </div>
+              <div id="title1" class="jQueryindigo bgB4 " >
+                &nbsp;&nbsp;&nbsp;&nbsp; 1-3 <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp; 부모 접근자 : 외부 , 내부 , 인라인 , jQueryId <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 ,  jQueryId <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp; jQueryId 적용
+              </div>
+          </div>
+          <br/>
+          <div id="title1" class="jQueryindigo bgB4 inCss" >
+            &nbsp; 2. (1번 jQueryId를 이미 사용했다)<br/>
+            &nbsp; 자신 : 외부 , 내부 , jQueryId <br/>
+            &nbsp; 내부 적용
+            <div id="title1" class="jQueryindigo bgB4 inCss" >
+              &nbsp;&nbsp;&nbsp;&nbsp; 2-1.<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 , 내부 , jQueryId <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 내부 적용
+            </div>
+            <div id="title1" class="jQueryindigo bgB4 " >
+              &nbsp;&nbsp;&nbsp;&nbsp; 2-2 <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 , 내부 , jQueryId <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 ,  jQueryId <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 외부 적용
+            </div>
+          </div>
+          <div id="title1" class="jQueryindigo bgB4 " >
+            &nbsp; 3 <br/>
+            &nbsp; 부모 : 외부 , 내부 , 인라인 , jQueryId <br/>
+            &nbsp; 자신 : 외부 ,  jQueryId <br/>
+            &nbsp; jQueryId 적용
+            <div id="title1" class="jQueryindigo bgB4 inCss"  style="background-color: white;" >
+              &nbsp;&nbsp;&nbsp;&nbsp; 3-1.<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 ,  jQueryId <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 , 내부 , 인라인 , jQueryId <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 인라인 적용
+            </div>
+            <div id="title1" class="jQueryindigo bgB4 inCss" >
+              &nbsp;&nbsp;&nbsp;&nbsp; 3-2.<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 ,  jQueryId <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 , 내부 , jQueryId <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 내부 적용
+            </div>
+            <div id="title1" class="jQueryindigo bgB4 " >
+              &nbsp;&nbsp;&nbsp;&nbsp; 3-3 <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 ,  jQueryId <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 ,  jQueryId <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp; 외부 적용
+            </div>
+          </div>
+        </div>
+      `;
+    }
+      
+    
+    $(function() {
+      // $("#아이디").jQuery함수(함수(){})
+      // $(".클래스").jQuery함수(함수(){})
+      $("#calcBtn1").click(function() {
+        // console.log('$("#calcBtn1").click(function()');
+
+        let product = $("#product").val();
+        let price = $("#price").val();
+
+        $("#price").select(); 
+        $("#price").focus(); 
+
+        let str = product + "의 가격은? " + numberWithCommas(price) +"<br/><br/><br/>"; //1000단위 콤마 
+
+        str += lankSort();
+        //출력방법
+        //1. js text
+        // demo.innerHTML = str;
+        //2. jQery html
+        // $("#demo").html(str); 
+        //3. jQery text
+        //$("#demo").text(str);
+        $("#demo").html(str);
+      });
+    });
+    //jQuery 내부에서 사용하는 함수가 jQuery 생성 내부에 있지않아도 된다.
+    function numberWithCommas(num) {
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+    }
+  </script>
+
+<style>
+  #panel {
+    width: 600px;
+    height: 300px;
+    border: 1px solid gray;
+    overflow: auto;
+    /* padding: 5px; */
+  }
+</style>
+<script>
+  'use strict';
+  
+  $(function() {
+    let boxHeight;
+    let scrollHeight;
+    let scrollTop;
+    let chai = 0;
+    let no = 0;
+
+    // 초기 자료를 panel레이어에 추가시켜준다.
+    function makeData() {
+      let str = '';
+      console.log("makeData 추가");
+      for(let i=0; i<20; i++) {
+        no++;
+        str += `<h3>Content : ${no}</h3>`;
+      }
+      // $('.container3 #panel').html(str);
+      $('.container3 #panel').append(str);
+    }
+
+    makeData();
+
+    // 스크롤바를 마지막까지 이동하게 되면 아래쪽으로 20개의 자료를 더 출력시켜보자.
+    $('.container3 #panel').on('scroll', function() {
+      boxHeight = $(this).height();
+      scrollTop = $(this).scrollTop();
+      scrollHeight = $(this).prop('scrollHeight');
+
+      chai = scrollHeight - scrollTop;
+      console.log(chai, boxHeight);
+      if(chai == boxHeight) {
+        $('.processing').show().delay(1000).hide(100,function() {
+          makeData();
+        });
+      }
+    });
+
+  });
+
+
+    $(function() {
+      // $("#아이디").jQuery함수(함수(){})
+      // $(".클래스").jQuery함수(함수(){})
+      $("#cssTest2").click(function() {
+        console.log('$("#cssTest2").click(function()');
+        let str ="";
+        $("#demo").html(str);
+        str += `<div id="btnBox" style="border: 1px solid black; margin-bottom: 20px; padding-left: 20px;">비동기 <br/>`;
+        str += ` <span>setInterval , clearInterval (반복 동작)<br/><br/></span>`;
+        str += `  <input type="button" id="demobtn2_1" value="버튼1" onclick="timerStrat()" class="btn btn-success" />`;
+        str += `  <input type="button" id="demobtn2_2" value="버튼2" onclick="timerStop()"  class="btn btn-danger" /> <br/>  <br/> `;
+        str += `  <input type="button" id="demobtn2_3" value="버튼3" onclick="timerPlus()"  class="btn btn-success" />`;
+        str += `  <input type="button" id="demobtn2_4" class="demobtn2_4" value="버튼4" onclick="timerMinus()" class="btn btn-primary" />`;
+        str += `  <br/><br/>`;
+        str += `</div>`;
+
+        $("#demo").html(str);
+      });
+
+      //*innerHTML에 작성한 버튼에는 사용X
+
+      // 아이디(btn2_1) 내부에 마우스 좌표 이동시 실행
+      // 1. in : mouseenter , mouseover
+      // 2. out: mouseleave , mouseout
+      // 적용 방법 
+      // 1. ID에 in Out 각각 적용
+
+            // 2. ID에 in 동작 연결해서 out 동작 
+          
+
+      document.querySelector('#demo').addEventListener('mouseover',function(e){
+        
+        console.clear();
+        // console.log("AA : "+$(this).attr('id')); :현재들어온 id 
+        console.log("querySelector('#demo').addEventListener : "+event.target.id); // target이 된 이벤트 
+        if(event.target.id == "demobtn2_1"){
+    
+          console.log("addClass(bgB5);");
+          $('#demobtn2_1').addClass("btn-primary");
+          $('#demobtn2_1').removeClass("btn-success");
+          // $('#btn2_1').css({
+          //   "fontSize":"12pt",
+          //   "color":"gray",
+          //   "background-color":"chocolate"
+          // });
+        }
+
+        if(event.target.id == "demobtn2_2"){
+          // css 수정  
+          // css important  설정으로 인라인보다 조건을 앞선다
+          $('#demobtn2_2').css("background-color","gray");
+        }
+        if(event.target.id == "demobtn2_3"){
+          // css 복수 수정  
+          $('#demobtn2_3').css({
+            "color":"gray",
+            "background-color":"chocolate"
+          });
+
+        }
+        //target에 class가 없어서 아이디로 찾아서 수정해야된다.
+        //*class로 수정하는 방법은 추가적으로 더 알아봐야된다.
+        if(event.target.id == "demobtn2_4"){
+          $('.demobtn2_4').addClass("btn-danger");
+        }
+
+        // demo안에 있는 버튼에 들어가는 이벤트는 발생하지만 
+        // 만약 해당 버튼을 감싸는 box가 있으면 box에 접근했다는 이벤트가 발생
+        // demo밖으로 나가지는 것은 
+        if(event.target.id == "btnBox"){
+          $('#demobtn2_1').addClass("btn-success");
+          $('#demobtn2_1').removeClass("btn-primary");
+          $('#demobtn2_2').css("background-color","red");
+          $('#demobtn2_3').css({
+                                "color":"white",
+                                "background-color":"green"
+                              });
+
+          $('.demobtn2_4').removeClass("btn-danger");
+        }
+        
+      });
+
+      
+      document.querySelector('#demo').addEventListener('mouseout',function(e){
+        
+        console.clear();
+        // console.log("AA : "+$(this).attr('id')); :현재들어온 id 
+        console.log("document.querySelector('#demo').addEventListener('mouseout' : "+event.target.id); // target이 된 이벤트 
+        
+        console.log("BB : "+event.target.id);
+        console.log("B mouseover in");
+        
+      });
+
+
+      $('#btn2_1').mouseenter(function(){
+        console.clear();
+        console.log("A mouseenter in");
+        $('#btn2_1').removeClass('bgR10');
+        $('#btn2_1').addClass('bgR5');
+        
+      });
+      // 아이디(btn2_1) 내부 마우스 좌표에서 벗어나면 실행
+      $('#btn2_1').mouseleave(function(){
+        console.log("A mouseleave out");
+        $('#btn2_1').addClass('bgR10');
+        $('#btn2_1').removeClass('bgR5');
+      });
+
+      // 2. ID에 in 동작 연결해서 out 동작 
+      $('#btn2_2').on('mouseover',function(){
+        console.clear();
+        console.log("B mouseover in");
+        $('#btn2_2').addClass('bgB5');
+      }).on('mouseout', function() {
+        console.log("B mouseout out");
+        $('#btn2_2').removeClass('bgB5');
+      });
+
+      // 3. 복수 동작 (and 동작 )
+      $('#btn2_3').on('mouseenter mouseover', function() {
+        // console.clear(); // 복수 동작이 확인 X 
+        console.log("================================");
+        console.log("C mouseenter mouseover in-------");
+        $('#btn2_3').addClass('bgG6');
+      }).on('mouseleave  mouseout' , function() {
+        console.log("C mouseleave mouseout out*******");
+        $('#btn2_3').removeClass('bgG6');
+      });
+
+
+
+    });
+
+    $(() => {
+      $('.container2 #case2 div span').css('color','orange');
+
+      $('.container2 #case2 div span:first-child').css('color','red');
+      $('.container2 #case2 div span:last-child').css('color','blue');
+      $('.container2 #case2 div span:nth-child(2)').css('color','yellow');
+      $('.container2 #case2 div span:only-child').css('textDecoration','underline'); // 자식태그가 1개인것만 적용
+      $('.container2 #case2 div *:only-of-type').css('fontSize','25pt'); // 자식태그가 1개인것만 적용
+      // $('.container2 #case2 div span:nth-child(2n-1)').css('backgroundColor','pink');
+      $('.container2 #case2  div span:nth-child(3n)').css('backgroundColor','skyblue'); //동일 적용 사항이 있으면 후순위 적용
+      //  $('.container2 #case2 div span:nth-child(odd)').css('backgroundColor','skyblue'); //홀수
+      $('.container2 #case2 div span:nth-child(even)').css('backgroundColor','pink'); //짝수
+
+    });
+
+        
+    $(function() {
+      // $('.container2 #case3 div').css('color', 'gray');
+      // $('.container2 #case3 div .test').css('color', 'orange');
+
+      // $('.container2 #case3 div').css('color','gray').filter('.test2').css('color','orange');
+
+      // 결과를 변수에 담아서 ????....
+      let temp = $('.container2 #case3 div').css('color', 'gray');
+      //let mbc = temp.filter('.container2 #case3  .test2').css('color','orange');
+      //console.log(mbc);
+
+      let mbc = temp.filter('.container2 #case3 .test2').css({'fontSize':'20pt','color':'orange'});
+      mbc.filter('.container2 #case3  .kbs').css('backgroundColor','green');
+    });
+
+    $(function() {
+      let fruitArray = [];
+      // each 사용
+      $('.container2 #case4 input[name="eachBtn"]').click(function() {
+        $('.container2 #case4 input[class="fruit2"]').each((index, data) => {
+          if($(data).is(':checked')) fruitArray.push($(data).val());
+        });
+        console.log(fruitArray);
+        // let str = '';
+        // for(let fruit of fruitArray) {
+        //   str += fruit + '/';
+        // }
+        // $('#demo').html(str);
+        $("#demo").html("");
+        $('#demo').html(fruitArray.join('/'));
+        // jQuery 빈 배열 만드는 방법 
+        //1
+        fruitArray = [];
+        //2
+        // arr.length = 0;
+        //3
+        // arr.splice(0, arr.length);
+        // arr.splice(0);
+      });
+
+
+      $('.container2 #case4 input[name="mapBtn"]').click(function() {
+        let fruitArray2 = $('.container2 #case4 input[class="fruit2"]').map((index, data) => {
+          if($(data).is(':checked')) return $(data).val();
+        }).get().join("/");
+
+        console.log(fruitArray2);
+        $("#demo").html("");
+        $("#demo").html(fruitArray2);
+      });
+    });
+
+  </script>
+
+  <style>
+    div.accordion {width: 100px;}
+
+    div.menu, div,content {
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+
+    div.menu {
+      background-color: blueviolet;
+      color: #fff;
+      padding: 5px;
+      width: 200px;
+    }
+  </style>
+  <script>
+  'use strict';
+      
+  // <div id="case2">
+  //       <h4>2. 아코디언 메뉴</h4>
+  //       <div class="menu menu1">전체</div>
+  //       <div class="content">
+    //나중에 확인 
+    $(function() {
+      $('.container3 #case2 > .content').hide();
+
+      $('.container3 #case2 .menu1 ').click(function() {
+        $('.container3 #case2 .content ').show();
+
+      });
+
+      $('.container3 #case2 .menu1').dblclick(function() {
+        $('.container3 #case2 .content').hide();
+      });
+
+      $('.container3 #case2 > .menu2').click(function() {
+        $(this).next().slideDown();
+      });
+
+      $('.container3 #case2 > .menu2').dblclick(function() {
+        $('.container3 #case2 > .content2').slideUp(1000);
+      });
+
+      $('.container3 #case2 > .menu3').click(function() {
+        $(this).next().toggle(300);
+      });
+      //4
+      $('.container3 #case2 > .menu4').click(function() {
+        $('.container3 #case2 > .menu3 ').show();
+      });
+
+      $('.container3 #case2 > .menu4').dblclick(function() {
+        $('.container3 #case2 > .menu3 ').hide();
+        $('.container3 #case2 > .content3 ').hide();
+      });
+
+      
+
+      $('.container3 #case2 > #title').click(function() {
+        $('.container3 #case2 > .content').hide();
+      });
+    });
+
+
+
+    let nlinkA = 1;
+    function link(name){
+        let linkA = nlinkA+"등 "+ name+"입니다.<br/>";  
+        demo.innerHTML += linkA;
+        nlinkA++;
+    }
+
+    $(function() {
+      let a1 = Math.random()*50000 + 1;
+      let a2 = Math.random()*50000 + 1;
+      let a3 = Math.random()*50000 + 1;
+
+      $('#atom1').animate({
+        marginLeft: '400px'
+      },a1,function() {
+        link("해피");
+      });
+
+      $('#atom2').animate({
+        marginLeft: '400px',
+        opacity: 0.3,
+      },a2,function() {       
+        link("초코");
+      });
+
+      $('#atom3').animate({
+        marginLeft: '400px',
+      },a3,function() {
+        link("샌드");
+      });
+    });
+
+  </script>
+
+
+<style>
+  .bgColor {
+    background-color: #ff0;
+  }
+</style>
+<script>
+  'use strict'
+  
+  let today = new Date();
+    let year = today.getFullYear();
+    let month = today.getMonth();
+    let date = today.getDate();
+
+
+    let cnt = 0;
+    
+    let bCheck = false;
+    let StartDay = 0;
+    let EndDay = 0;
+    
+    $(function() {
+
+      let ymd = `${year}-${month}-${date}`;
+
+
+      $('td').on('click', function() {
+        if($(this).hasClass('bgColor') == true) { // class 존재 유무 확인 
+          console.log("GG");
+          $(this).removeClass('bgColor');
+          cnt--;
+        }
+        else {
+          let cellText = eval($(this).text());
+          console.log(cellText);
+          if(cellText < date) alert("오늘 이전일은 선택하실수 없습니다.");
+          else {
+            console.log("this : " + this);
+
+
+            if(bCheck == false){
+              console.log("cnt1 : "+ cnt);
+              for(let i = 0; i <30; i++  ){
+                $('tr td').eq(i).removeClass('bgColor');
+                cnt = 0;
+              }
+              StartDay = cellText;
+              bCheck = true;
+              cnt++;
+            }
+            else{
+              console.log("cnt2 : "+ cnt);
+              if(StartDay<cellText)
+                EndDay = cellText;
+              else{
+                EndDay = StartDay;
+                StartDay = cellText;
+              }
+
+              for(let i = StartDay; i <EndDay; i++  ){
+                console.log(i);
+                // 추가 확인 필요 
+                // $("td[class=tdCell]").eq(i).addClass('bgColor');
+                $(".tdCell").eq(i).addClass('bgColor');
+                // $('tr td').eq(i).addClass('bgColor');
+                cnt++;
+              }
+
+              bCheck = false;
+            }
+            $(this).addClass('bgColor');
+          }
+
+          $('#demo').html("현재 선택된 셀의 개수는 <font color='red'><b>"+cnt+"</b></font> 입니다.")
+        }
+      });
+
+    });
+</script>
+
+
+</head>
+<body> 
+  <!-- 결과 출력 -->
+  <div class="demoView">
+    <strong >결과 출력창  &nbsp; &nbsp; &nbsp; &nbsp;
+      <input type="button" value="초기화" onclick=" demoReset()">
+      <br/><hr/><br/>
+    </strong>
+  
+    <div id="demo"></div>
+  </div>
+
+  <p><br/></p>
+  <div class="container1" style="border: 1px solid black; margin: 20px; padding: 20px">
+    <h2>1. jQery 함수  생성 및 동작  </h2><br/>
+    <h4>css 우선 순위</h4>
+
+    <span id="title1" class="jQueryindigo">*consol 확인</span><br/>
+    <span  class="jQuerybgBlue bgB4" style="background-color: white;">jQuery css 사용<br/>
+      <span  class="bgB4" style="background-color: white;">(css , 내부 style <  jQuery css 설정 < 인라인 style 설정)</span><br/>
+    </span>
+    
+    <form name="myform1">
+      <h2> </h2>
+      <input type="text" id="product" value="냉장고" autofocus class="form-control mb-3" />
+      <input type="text" name="price" id="price" value="1000" class="form-control mb-3" />
+
+      <div  type="button" id="calcBtn1"  class="bgB4 lintH50px AA" >1. jQery 함수 동작 및 css 순위 </div>
+    </form>
+
+    <h4>css 우선 순위</h4>
+
+    <div > 
+      <div style="background-color: white; border: 1px solid black; padding: 10px;">
+        style 적용 등급 <br/>
+        jQuery css class 설정이 최우선 적용 (전체 적용된 상태)<br/>
+        외부 css 설정 < 내부 css 설정 < 인라인 style 설정 < jQuery css id 설정 < jQuery css class 설정
+      </div>
+      <div id="title1" class="jQueryindigo bgB4 inCss" style="background-color: white;">
+        &nbsp; 1 <br/>
+        &nbsp; 자신 : 외부 , 내부 , 인라인 , jQueryId <br/>
+        &nbsp; jQueryId 적용
+          <div id="title1" class="jQueryindigo bgB4 inCss" style="background-color: white;">
+            &nbsp;&nbsp;&nbsp;&nbsp; 1-1  <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 , 내부 , 인라인 , jQueryId <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 , 내부 , 인라인 , jQueryId <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp; 인라인 적용<br/>
+            <!-- &nbsp;&nbsp;&nbsp;&nbsp; (jQueryId 는 위에서 썼으면 아래서 재동작 X) -->
+            <div id="title1" class="jQueryindigo bgB4 inCss" style="background-color: white;">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1-1-1  <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 , 내부 , 인라인 , jQueryId <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 , 내부 , 인라인 , jQueryId <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 인라인 적용<br/>
+              <!-- &nbsp;&nbsp;&nbsp;&nbsp; (jQueryId 는 위에서 썼으면 아래서 재동작 X) -->
+            </div>
+            <div id="title1" class="jQueryindigo bgB4 inCss" >
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1-1-2 <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 , 내부 , 인라인 , jQueryId <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 , 내부 , jQueryId <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 내부 적용
+            </div>
+            <div id="title1" class="jQueryindigo bgB4" >
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1-1-3 <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 , 내부 , 인라인 , jQueryId <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 ,  jQueryId <br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 외부 적용
+            </div>
+          </div>
+          <div id="title1" class="jQueryindigo bgB4 inCss" >
+            &nbsp;&nbsp;&nbsp;&nbsp; 1-2 <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 , 내부 , 인라인 , jQueryId <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 , 내부 , jQueryId <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp; 내부 적용
+          </div>
+          <div id="title1" class="jQueryindigo bgB4 " >
+            &nbsp;&nbsp;&nbsp;&nbsp; 1-3 <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp; 부모 접근자 : 외부 , 내부 , 인라인 , jQueryId <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 ,  jQueryId <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp; jQueryId 적용
+          </div>
+      </div>
+      <br/>
+      <div id="title1" class="jQueryindigo bgB4 inCss" >
+        &nbsp; 2. (1번 jQueryId를 이미 사용했다)<br/>
+        &nbsp; 자신 : 외부 , 내부 , jQueryId <br/>
+        &nbsp; 내부 적용
+        <div id="title1" class="jQueryindigo bgB4 inCss" >
+          &nbsp;&nbsp;&nbsp;&nbsp; 2-1.<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 , 내부 , jQueryId <br/>
+          &nbsp;&nbsp;&nbsp;&nbsp; 내부 적용
+        </div>
+        <div id="title1" class="jQueryindigo bgB4 " >
+          &nbsp;&nbsp;&nbsp;&nbsp; 2-2 <br/>
+          &nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 , 내부 , jQueryId <br/>
+          &nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 ,  jQueryId <br/>
+          &nbsp;&nbsp;&nbsp;&nbsp; 외부 적용
+        </div>
+      </div>
+      <div id="title1" class="jQueryindigo bgB4 " >
+        &nbsp; 3 <br/>
+        &nbsp; 부모 : 외부 , 내부 , 인라인 , jQueryId <br/>
+        &nbsp; 자신 : 외부 ,  jQueryId <br/>
+        &nbsp; jQueryId 적용
+        <div id="title1" class="jQueryindigo bgB4 inCss"  style="background-color: white;" >
+          &nbsp;&nbsp;&nbsp;&nbsp; 3-1.<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 ,  jQueryId <br/>
+          &nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 , 내부 , 인라인 , jQueryId <br/>
+          &nbsp;&nbsp;&nbsp;&nbsp; 인라인 적용
+        </div>
+        <div id="title1" class="jQueryindigo bgB4 inCss" >
+          &nbsp;&nbsp;&nbsp;&nbsp; 3-2.<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 ,  jQueryId <br/>
+          &nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 , 내부 , jQueryId <br/>
+          &nbsp;&nbsp;&nbsp;&nbsp; 내부 적용
+        </div>
+        <div id="title1" class="jQueryindigo bgB4 " >
+          &nbsp;&nbsp;&nbsp;&nbsp; 3-3 <br/>
+          &nbsp;&nbsp;&nbsp;&nbsp; 부모 : 외부 ,  jQueryId <br/>
+          &nbsp;&nbsp;&nbsp;&nbsp; 자신 : 외부 ,  jQueryId <br/>
+          &nbsp;&nbsp;&nbsp;&nbsp; 외부 적용
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/><br/><br/>
+
+  <div class="container2" style="border: 1px solid black; margin: 20px; padding: 20px">
+    <h2>2. css 사용  </h2><br/>
+    <form name="myform2">
+      <h2> </h2>
+      <div id="case1">
+        <div  type="button" id="cssTest2"  class="bgG4 lintH50px" >1. 색상 병경 </div><br/><br/>
+        <input type="button" id="btn2_1" class="bgR10" value="버튼1" onclick="timerStrat()"  />
+        <input type="button" id="btn2_2" class="bgR3" value="버튼2" onclick="timerStop()"  />
+        <input type="button" id="btn2_3" class="bgR3" value="버튼3" onclick="timerPlus()"   />
+      </div>
+
+      <br/><br/><br/>
+
+      <div  id="case2">
+        <h2>2.샘플 데이터 </h2>
+        <div>
+          <span>1.짜장면</span>
+          <span>2.짬봉</span>
+          <span>3.탕수육</span>
+          <span>4.볶음밥</span>
+          <span>5.잡채밥</span>
+          <span>6.잡채밥</span>
+        </div>
+        <div>
+          <span>11.사과</span>
+          <span>12.배</span>
+          <span>13.바나나</span>
+          <span>14.자두</span>
+          <span>15.포도</span>
+        </div>
+        <div>
+          <p>21-1.컴퓨터</p>
+          <p>21-2.컴퓨터</p>
+          <span>21-3.컴퓨터</span>
+        </div>
+        <div>
+          <span>21-4.컴퓨터</span>
+        </div>
+        <div>
+          <span>31.서울</span>
+          <span>32.부산</span>
+          <span>33.청주</span>
+        </div>
+      </div>
+    
+      <br/><br/><br/>
+      <div id="case3">
+        <h2>3. 진달래 꽃</h2>
+        <p>작가 : <span id="user">김소월</span></p>
+        <div class="yeon">1연</div>
+        <div>나보기가 <span class="test">역겨워</span> 가실때에는</div>
+        <div><span class="main">말없이</span> 고이보내 드리오리다.</div>
+        <div class="yeon">2연</div>
+        <div>영변에 <span class="yeon">약산</span> 진달래꽃</div>
+        <div><span class="test main">아름따다</span> 가실길에 <span class="aa">뿌리오리다.</span></div>
+        <div class="yeon">3연</div>
+        <div class="test2 kbs">가시는 걸음걸음 놓인그꽃을</div>
+        <div>사뿐이 <span class="test">즈려밟고</span> <span class="bb">가시옵소서</span></div>
+        <div class="yeon">4연</div>
+        <div class="test2">나보기가 역겨워 <span class="main">가실때에는</span></div>
+        <div>죽어도 <span class="test">아니눈물</span> <span class="cc">흘리오리다.</span></div>
+        <div>Teh End...</div>
+      </div>
+
+      <br/><br/><br/>
+      <div id="case4">
+        <h2>4. 좋아하는 과일은?</h2>
+        <p>
+          <input type="checkbox" name="fruit2" class="fruit2" value="사과" checked/>사과 &nbsp;
+          <input type="checkbox" name="fruit2" class="fruit2" value="배" />배 &nbsp;
+          <input type="checkbox" name="fruit2" class="fruit2" value="바나나"  checked/>바나나 &nbsp;
+          <input type="checkbox" name="fruit2" class="fruit2" value="수박"  checked/>수박 &nbsp;
+          <input type="checkbox" name="fruit2" class="fruit2" value="참외" />참외 &nbsp;
+          <input type="checkbox" name="fruit2" class="fruit2" value="키위" />키위 &nbsp;
+          <input type="checkbox" name="fruit2" class="fruit2" value="포도" />포도 &nbsp;
+          <input type="checkbox" name="fruit2" class="fruit2" value="딸기" />딸기
+        </p>
+        <p>
+          <input type="button" value="선택(each)" name="eachBtn" class="btn btn-success"/>
+          <input type="button" value="선택(map)" name="mapBtn" class="btn btn-primary"/>
+          <input type="button" value="취소" name="resetBtn" onclick="location.reload()" class="btn btn-warning"/>
+        </p>
+      </div>
+    </form>
+  </div>
+  <br/><br/><br/>
+  <div class="container3" style="border: 1px solid black; margin: 20px; padding: 20px">
+  
+    <h2>3. 활용</h2>
+    <form name="myform3">
+      <div id="case1">
+        <h4>1. 스크롤</h4>
+        <div id="panel"></div>
+        <div class="processing" style="display:none; text-align:center;">
+          <img src="../0.img/processing.gif" />
+        </div>
+      </div>
+      <br/><br/><br/>
+
+      <div id="case2">
+        <h4>2. 아코디언 메뉴</h4>
+        <div class="menu menu1">전체</div>
+        <div class="content content1 ">
+          <a href="#">서브메뉴1</a><br/>
+          <a href="#">서브메뉴2</a><br/>
+        </div>
+        <div class="menu menu2">2 slideDown</div>
+        <div class="content content2">
+          <a href="#">서브메뉴1</a><br/>
+          <a href="#">서브메뉴2</a><br/>
+          <a href="#">서브메뉴3</a><br/>
+        </div>
+        <div class="menu menu3">3 toggle</div>
+        <div class="content content3">
+          <a href="#">서브메뉴1</a><br/>
+        </div>
+        <div class="menu menu4">(주메뉴3 삭제)</div>
+        <div class="content content4">
+          <a href="#">서브메뉴1</a><br/>
+          <a href="#">서브메뉴2</a><br/>
+          <a href="#">서브메뉴3</a><br/>
+          <a href="#">서브메뉴4</a><br/>
+          <a href="#">서브메뉴5</a><br/>
+        </div>
+      </div>
+      <br/><br/><br/>
+
+      
+      <div id="case3">
+        <h4>3. 에니메이션 효과</h4>
+        <div id="atom1">해피</div>
+        <div id="atom2">초코</div>
+        <div id="atom3">샌드</div>
+      </div>
+      <br/><br/><br/>
+
+      <div id="case4">
+        <h4>4. 달력체크</h4>
+        <p>오늘 날짜 이전은 선택하실 수 없습니다.</p>
+        <table class="table table-bordered text-center" style="width: 500px;">
+          <tr>
+            <td class="tdCell">1</td>
+            <td class="tdCell">2</td>
+            <td class="tdCell">3</td>
+            <td class="tdCell">4</td>
+            <td class="tdCell">5</td>
+          </tr>
+          <tr>
+            <td class="tdCell">6</td>
+            <td class="tdCell">7</td>
+            <td class="tdCell">8</td>
+            <td class="tdCell">9</td>
+            <td class="tdCell">10</td>
+          </tr>
+          <tr>
+            <td class="tdCell">11</td>
+            <td class="tdCell">12</td>
+            <td class="tdCell">13</td>
+            <td class="tdCell">14</td>
+            <td class="tdCell">15</td>
+          </tr>
+          <tr>
+            <td class="tdCell">16</td>
+            <td class="tdCell">17</td>
+            <td class="tdCell">18</td>
+            <td class="tdCell">19</td>
+            <td class="tdCell">20</td>
+          </tr>
+          <tr>
+            <td class="tdCell">21</td>
+            <td class="tdCell">22</td>
+            <td class="tdCell">23</td>
+            <td class="tdCell">24</td>
+            <td class="tdCell">25</td>
+          </tr>
+          <tr>
+            <td class="tdCell">26</td>
+            <td class="tdCell">27</td>
+            <td class="tdCell">28</td>
+            <td class="tdCell">29</td>
+            <td class="tdCell">30</td>
+          </tr>
+        </table>
+      </div>
+
+    </form>>
+
+  </div>
+  <br/><br/><br/>
+  <br/><br/><br/>
+</body>
+</html>

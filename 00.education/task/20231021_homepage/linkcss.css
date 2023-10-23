@@ -1,0 +1,59 @@
+
+
+/* css */
+
+/* folder file: 파일을 가지고 가야된다. */
+@import url(../../../0.mycss/ericReset.css);
+@import url(../../../0.mycss/UerReset.css);
+
+@import url(../../../0.mycss/font.css);
+
+@import url("../../../0.mycss/Color.css");
+
+
+@import url("SiteSet.css");
+
+/* font */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@700;900&display=swap");
+
+/* icon */
+
+.pos{
+	position: relative;
+	top: 50%;
+	left: 10%;
+}
+
+.logInbox input{
+	width: 30%;
+	height: 30px;
+} 
+.logInbox input[type="submit"] , .logInbox input[type="button"]{
+	width: 20%;
+}
+
+.logInbox{
+display: inline-block;
+word-wrap: break-word;
+text-align: left;
+/* border: 1px solid black; */
+position: relative;
+width: 50%;
+height: 50%;
+/* height: 500px; */
+margin: 8% 0%;
+padding: 2% 0%;
+left: 25%;
+opacity: 0.9;
+background-color: darkcyan;
+
+}
+
+.textbox{
+	display: inline-block;
+	width: 10%;
+	color: black;
+	/* border: 1px solid black; */
+	text-align: left;
+}
+

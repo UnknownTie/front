@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test03_시계.html</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  
+  <style>
+
+    .Circle{
+      border: 2px solid black;  
+      border-radius: 50%; 
+      width: 550px; height: 550px;
+      opacity :0.9;
+      z-index: 20;
+      position: absolute;
+      top: 280px;
+      left: 180px;
+    }
+
+    .CircleS{
+      /* border: 1px solid black;   */
+      border-radius: 50%; 
+      width: 500px; height: 500px;
+      opacity :0.9;
+      z-index: 6;
+      position: absolute;
+      top: 300px;
+      left: 200px;
+    }
+    .CircleS_1{
+      /* border: 1px solid black;   */
+      border-radius: 250px 250px 0px 0px; 
+      width: 500px; height: 250px;
+
+    }
+    .CircleS_2{
+      /* border: 1px solid black;   */
+      border-radius: 0px 0px 250px 250px; 
+      width: 500px; height: 250px;
+    }
+
+
+    .CircleM{
+      /* border: 1px solid black;   */
+      border-radius: 50%; 
+      width: 400px;  height: 400px;
+      opacity :0.7;
+      z-index: 8;
+      position: absolute;
+      top: 350px;
+      left: 250px;
+    }
+    .CircleM_1{
+      /* border: 1px solid black;   */
+      border-radius: 200px 200px 0px 0px; 
+      width: 400px; height: 200px;
+
+    }
+    .CircleM_2{
+      /* border: 1px solid black;   */
+      border-radius: 0px 0px 200px 200px; 
+      width: 400px; height: 200px;
+    }
+
+
+    .CircleH{
+      /* border: 1px solid black;   */
+      border-radius: 50%; 
+      width: 300px; height: 300px;
+      opacity :0.6;
+      z-index: 10;
+      position: absolute;
+      top: 400px;
+      left: 300px;
+    }
+    .CircleH_1{
+      /* border: 1px solid black;   */
+      border-radius: 150px 150px 0px 0px; 
+      width: 300px; height: 150px;
+    }
+    .CircleH_2{
+      /* border: 1px solid black;   */
+      border-radius: 0px 0px 150px 150px; 
+      width: 300px; height: 150px;
+    }
+
+    .TimeImage0{
+      /* border: 1px solid black;   */
+      width: 80px; height: 80px;
+      z-index: 100;
+      position: absolute;
+      top: 215px;
+      left: 405px;
+    }
+    .TimeImage12{
+      /* border: 1px solid black;   */
+      width: 80px; height: 80px;
+      z-index: 100;
+      position: absolute;
+      top: 830px;
+      left: 410px;
+    }
+    .TimeImage6{
+      /* border: 1px solid black;   */
+      width: 80px; height: 80px;
+      z-index: 100;
+      position: absolute;
+      top: 505px;
+      left: 725px;
+    }
+    .TimeImage18{
+      /* border: 1px solid black;   */
+      width: 80px; height: 80px;
+      z-index: 100;
+      position: absolute;
+      top: 505px;
+      left: 100px;
+    }
+
+  </style>
+  <script>
+    'use strict';
+    let statusTimer= setInterval(clock , 1);
+
+//테스트용 시간 진행
+    let secTimer = setInterval(secCheck , 1); 
+    let nSec =0;
+    let nMinute = 30;
+    let nHour = 15;
+    //초
+    function secCheck(){
+      console.log("secCheck");
+      nSec +=1;
+      if(nSec == 60){
+        minuteCheck();
+        nSec=0;
+      }
+    }
+    //분
+    function minuteCheck(){
+      console.log("minuteCheck");
+      nMinute +=1;
+      if(nMinute == 60){
+        hourCheck();
+        nMinute=0;
+      }
+    }
+    //시
+    function hourCheck(){
+      console.log("hourCheck");
+      nHour +=1;
+      if(nHour == 24){
+        nHour=0;
+      }
+    }
+
+  
+    function timerStop() {
+      console.log("stop");
+      clearInterval(statusTimer);
+      clearInterval(secTimer);
+    }
+  
+
+
+    function clock() {
+        let today = new Date();
+        let time = today.getHours() +"시" + today.getMinutes() + "분"+ today.getSeconds()+ "초";
+
+        let testTime= nHour +"시" + nMinute + "분"+ nSec+ "초";
+
+        demo.innerHTML = testTime;
+        // nSec =today.getSeconds();
+        // nMinute=today.getMinutes() ;
+        // nHour=today.getHours() ;
+        let nAngleS = 90 + nSec *6;
+        let nAngleM = 90 + nMinute *6;
+        let nAngleH = 90 + nHour *(360 /24); //360 /24
+
+        let nLine = 50;
+
+        let nFunH1_1 = "<div class=\"CircleH_1\" style=\"background-color: #fff;\"></div>";
+        let nFunH1_2 = "<div class=\"CircleH_2\" style=\"background-color: #fff;\"></div>";
+
+        if( nHour <= 6  )
+          nFunH1_1 = "<div class=\"CircleH_1\"></div>";
+        else if(nHour <= 18)
+          nFunH1_2 = "<div class=\"CircleH_2\"></div>";
+        else
+          nFunH1_1 = "<div class=\"CircleH_1\"></div>";
+
+        let nFunH2 = "<div class=\"CircleH\" style=\"background: linear-gradient("+nAngleH+"deg, #fff 49% ,  green 50% , #fff  51%  , #fff  90%);\">"+nFunH1_1+nFunH1_2+"</div>";
+        demoH.innerHTML = nFunH2;
+
+        let nFunM1_1 = "<div class=\"CircleM_1\" style=\"background-color: #fff;\"></div>";
+        let nFunM1_2 = "<div class=\"CircleM_2\" style=\"background-color: #fff;\"></div>";
+
+        if( nMinute <= 15  )
+          nFunM1_1 = "<div class=\"CircleM_1\"></div>";
+        else if(nMinute <= 45)
+          nFunM1_2 = "<div class=\"CircleM_2\"></div>";
+        else
+          nFunM1_1 = "<div class=\"CircleM_1\"></div>";
+
+        let nFunM = "<div class=\"CircleM\" style=\"background: linear-gradient("+nAngleM+"deg, #fff 49% ,  blue 50% , #fff  51%  , #fff  90% );\">"+nFunM1_1+nFunM1_2+"</div>";
+
+        demoM.innerHTML = nFunM;
+
+        let nFunS1_1 = "<div class=\"CircleS_1\" style=\"background-color: #fff;\"></div>";
+        let nFunS1_2 = "<div class=\"CircleS_2\" style=\"background-color: #fff;\"></div>";
+
+        if( nSec <= 15  )
+          nFunS1_1 = "<div class=\"CircleS_1\"></div>";
+        else if(nSec <= 45)
+          nFunS1_2 = "<div class=\"CircleS_2\"></div>";
+        else
+          nFunS1_1 = "<div class=\"CircleS_1\"></div>"; 
+
+        let nFunS = "<div class=\"CircleS\" style=\"background: linear-gradient("+nAngleS+"deg, #fff 49% ,  red 50% , #fff  51%  , #fff  90% );\">"+nFunS1_1+nFunS1_2+"</div>";
+        demoS.innerHTML = nFunS;
+
+        Circle
+        let nFunTime = "<div class=\"\" ></div>";
+        nFunTime = "<div class=\"TimeImage0\" ></div>";
+        nFunTime = "<div class=\"TimeImage0\" ></div>";
+        nFunTime = "<div class=\"TimeImage0\" ></div>";
+        demoTimeA.innerHTML = nFunTime;
+      }
+  
+  </script>
+</head>
+<body>
+<p><br/></p>
+
+<div style="border: 1px solid black; margin-bottom: 20px; padding-left: 20px;"><br/><br/>
+  <!-- <input type="button" value="타이머 시작" xxonclick="timerStrat()" class="btn btn-success" /> -->
+  <input type="button" value="종료" xxonclick="timerStop()" class="btn btn-danger" /> <br/> <br/>
+  <br/><br/>
+</div>
+
+<hr/>
+
+<div id="demo" style="margin-left: 50px; font-size: 20px;"></div>
+
+<span id="demoTime"><div class="Circle" ></div></span>
+<span id="demoTime0"><img src="../../0.img/00.png" class="TimeImage0"  ></img></span>
+<span id="demoTime6"><img src="../../0.img/06.png" class="TimeImage6" value="6"></img></span>
+<span id="demoTime12"><img src="../../0.img/12.png" class="TimeImage12" value="12"></img></span>
+<span id="demoTime18"><img src="../../0.img/18.png" class="TimeImage18" value="18"></img></span>
+<span id="demoH"></span>
+<span id="demoM"></span>
+<span id="demoS"></span>
+
+</body>
+</html>
