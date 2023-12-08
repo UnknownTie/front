@@ -248,10 +248,10 @@
         $("#demo").html(str);
         str += `<div id="btnBox" style="border: 1px solid black; margin-bottom: 20px; padding-left: 20px;">비동기 <br/>`;
         str += ` <span>setInterval , clearInterval (반복 동작)<br/><br/></span>`;
-        str += `  <input type="button" id="demobtn2_1" value="버튼1" onclick="timerStrat()" class="btn btn-success" />`;
-        str += `  <input type="button" id="demobtn2_2" value="버튼2" onclick="timerStop()"  class="btn btn-danger" /> <br/>  <br/> `;
-        str += `  <input type="button" id="demobtn2_3" value="버튼3" onclick="timerPlus()"  class="btn btn-success" />`;
-        str += `  <input type="button" id="demobtn2_4" class="demobtn2_4" value="버튼4" onclick="timerMinus()" class="btn btn-primary" />`;
+        str += `  <input type="button" id="demobtn2_1" value="버튼1"  class="btn btn-success" />`;
+        str += `  <input type="button" id="demobtn2_2" value="버튼2"  class="btn btn-danger" /> <br/>  <br/> `;
+        str += `  <input type="button" id="demobtn2_3" value="버튼3"  class="btn btn-success" />`;
+        str += `  <input type="button" id="demobtn2_4" class="demobtn2_4" value="버튼4" class="btn btn-primary" />`;
         str += `  <br/><br/>`;
         str += `</div>`;
 
@@ -472,7 +472,6 @@
 
       $('.container3 #case2 .menu1 ').click(function() {
         $('.container3 #case2 .content ').show();
-
       });
 
       $('.container3 #case2 .menu1').dblclick(function() {
@@ -756,9 +755,10 @@
       <h2> </h2>
       <div id="case1">
         <div  type="button" id="cssTest2"  class="bgG4 lintH50px" >1. 색상 병경 </div><br/><br/>
-        <input type="button" id="btn2_1" class="bgR10" value="버튼1" onclick="timerStrat()"  />
-        <input type="button" id="btn2_2" class="bgR3" value="버튼2" onclick="timerStop()"  />
-        <input type="button" id="btn2_3" class="bgR3" value="버튼3" onclick="timerPlus()"   />
+        (색상 변경 클릭으로 버튼창 생성 이후)
+        <input type="button" id="btn2_1" class="bgR10" value="버튼1"  />
+        <input type="button" id="btn2_2" class="bgR3" value="버튼2"  />
+        <input type="button" id="btn2_3" class="bgR3" value="버튼3"   />
       </div>
 
       <br/><br/><br/>

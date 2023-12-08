@@ -111,7 +111,7 @@ https://templatemo.com/tm-560-astro-motion
           <div class="col-xs-12">
             <div class="cd-slider-nav">
               <nav class="navbar navbar-expand-lg" id="tm-nav">
-                <a href="https://chat.openai.com/" target="_blank" >
+                <a href="#0" data-no="1" target="_blank" >
                   <img src="./img/chatgpt_Log.png" alt="Image" class="img-fluid intro-img-4" style="margin-top: 10px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-supported-content" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -149,12 +149,12 @@ https://templatemo.com/tm-560-astro-motion
                   <span  class=" jb-Size1">
                     반갑습니다.  </br> 편안함을 만들어주는 IoT 플랫폼입니다.</br>
                     귀가 전 편안한 나의 집을 만들어보세요.</br></br>
-                    문의사항은 <a rel="nofollow" href="http://www.techbridge.kr/" target="_blank">ChatGPT</a>에게 문의부탁드립니다. </p> </span>
+                    문의사항은 <a rel="nofollow" href="https://chat.openai.com/" target="_blank">ChatGPT</a>에게 문의부탁드립니다. </p> </span>
                 </div>
         
                 <div class="ImgView">
                   <!-- <img src="img/home-img-1.jpg" alt="Image" class="img-fluid intro-img-1"> -->
-                <img src="img/home-img-2.jpg" alt="Image" class="img-fluid intro-img-2">
+                <img src="img/sys_bg.jpg" alt="Image" class="img-fluid intro-img-2">
                 </div>
                 <div class="circle intro-circle-1"></div>
                 <div class="circle intro-circle-2"></div>
@@ -239,14 +239,15 @@ https://templatemo.com/tm-560-astro-motion
                       <input type="submit" class="btn btn-primary tm-btn-pad-2" value="계정접속">
                     </div>
                   </form>
-                  <form action="#" method="POST" class="contact-form">
+                  <!-- <form action="#" method="POST" class="contact-form">
+                    <span class="jb-Size1_5"> 건의사항  </br></span  >
                     <div class="input-group tm-mb-30">
-                      <textarea rows="5" name="message" class="textarea form-control rounded-0 border-top-0 border-end-0 border-start-0" placeholder="건의사항"></textarea>
+                      <textarea rows="5" name="message" class="textarea form-control rounded-0 border-top-0 border-end-0 border-start-0" placeholder="입력"></textarea>
                     </div>
                     <div class="input-group justify-content-end">
                       <input type="submit" class="btn btn-primary tm-btn-pad-2" value="보내기" >
                     </div>
-                  </form>
+                  </form> -->
 
                 </div>
                 <div class="col-md-6 tm-contact-right ">
@@ -276,8 +277,6 @@ https://templatemo.com/tm-560-astro-motion
                     </div>
                 <!-- </div> -->
               </div>
-
-
               </div>
             </div>
           </li>
@@ -304,14 +303,11 @@ https://templatemo.com/tm-560-astro-motion
 
   <script src="js/chart.js"></script>
 
-
-
 <script>
 
 let nTime = ["2023.5.2","2023.5.3","2023.5.4","2023.5.5","2023.5.6","2023.5.7","2023.5.8"];
 
 function timedCount(){
-
     //데이터셋 수 만큼 반복
     var dataset = config.data.datasets;
     for(var i=0; i<dataset.length; i++){
@@ -338,8 +334,6 @@ function timedCount(){
 //  data는 다시 {labels, datasets} 로, datasets 는 [{data, label}]의 배열로 구성된다.
 //  options는 {tension, plugins, scales}로 구성된다.
 // 이하 다른 차트도 모두 같은 방식으로 구성된다.
-
-
 var ctx = document.getElementById("CHART_Light");
 
 var config = 	{

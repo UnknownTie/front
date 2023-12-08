@@ -20,7 +20,7 @@
       console.log("1");
       console.log(e);
       console.log("드래그 금지");
-
+      mClick(e);
       if(e.buttons == 1)
         console.log("buttons(1) 왼쪽 버튼 금지");
       if(e.buttons == 2)
@@ -40,7 +40,9 @@
     document.onselectstart = function(e) { 
       console.log("1");
       console.log(e);
+
       console.log("드래그 금지");
+      mClick(e);
     return false; 
     };
 
@@ -49,7 +51,9 @@
     document.oncontextmenu = function(e) {
       console.log("2");
       console.log(e);
+
       console.log("오른쪽 버튼 금지");
+      mClick(e);
       return false;
     };  
 
@@ -57,8 +61,9 @@
     document.onclick = function(e) {
       console.log("3");
       // console.log(e);
-      mClick(e);
+
       console.log("왼쪽 버튼 금지");
+      mClick(e);
       return false;
     };  
     
@@ -66,6 +71,7 @@
 
     function mClick(e) {
       // alert("클릭 이벤트 발생");
+      console.log("------------------------------------");
       console.log(e);
       let ScreenX = e.screenX;
       let ScreenY = e.screenY;
@@ -78,7 +84,8 @@
       str += `window 기준 y 좌표 : ${ScreenY} <br/>`;
       str += 'html 기준 X 좌표 : ' + ClientX + '<br/>';
       str += `html 기준 y 좌표 : ${ClientY}`;
-
+      
+      console.log("------------------------------------");
       demo.innerHTML = str;
     }
 

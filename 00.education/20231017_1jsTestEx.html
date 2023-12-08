@@ -247,6 +247,14 @@
 
   <!-- 4 -->
   <script>
+  	function imgSave() {
+
+    if(document.getElementById("imgName").value )
+      arrA.add([document.getElementById("fruit").value , document.getElementById("imgName").value ]);
+    else
+      alert("이미지 이름을 확인하세요");
+    }
+
     function fCheck4() {
 
       let gender = myform4.gender.value;
@@ -533,12 +541,12 @@ function calc(parameter) {
       <div>
         <select name="fruit" id="fruit" onchange="fCheck4()" class="form-control mb-3">
           <option value="">선택하세요</option>
-          <option>사과</option>
-          <option>배</option>
-          <option>바나나</option>
-          <option>딸기</option>
-          <option>수박</option>
-          <option>파인애플</option>
+          <option value="사과">사과</option>
+          <option value="배">배</option>
+          <option value="바나나">바나나</option>
+          <option value="딸기">딸기</option>
+          <option value="수박">수박</option>
+          <option value="파인애플">파인애플</option>
         </select>
       </div>
 
