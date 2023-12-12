@@ -249,9 +249,79 @@
 
   }
 
+
+  function time() {
+    let TimeSec;
+    let h= 0 ; let m= 0 ; let s= 0; 
+
+    clearTimeout(TimeSec);
+    console.log("Time");
+    num++;
+    TimeSec = setInterval(()=>{
+      s++;
+      if(s=== 60){
+        s=0; m++;
+        if(m === 60){
+          m=0; h++;
+          if(h===24){
+            h=0;   console.log("하루") ;
+            clearTimeout(TimeSec);
+          }
+        }
+      }
+      console.log(h+":"+ m +":"+ s);
+    } , 1000);
+  }
+
+
+
+  function timeM() {
+    let TimeM;
+    let TimeS;
+    let m= 0 ; let s= 1; 
+
+    if(TimeM != null){
+      clearTimeout(TimeM);
+      console.log("TimeM 1 clear");
+    }
+
+
+    TimeM = setInterval(()=>{
+      if(TimeS != null){
+        clearTimeout(TimeS);
+        console.log("TimeS 1 clear");
+      }
+
+      s=1; //초기화
+      TimeS = setInterval(()=>{
+        console.log("    "+ s++ +"초");
+        if(s === 60 || s >= 60){
+          if(TimeS != null){
+            clearTimeout(TimeS);
+            console.log("TimeS 2 clear");
+          }
+          s=1; //초기화
+        }
+      } , 10);
+
+      if(m === 0)   m++;
+      else  console.log( m++ +"분");
+
+      if(m=== 6){
+        s=1; m++;  //초기화
+        if(TimeM != null){
+          clearTimeout(TimeM);
+          console.log("TimeM 2 clear");
+        }
+      }
+    } , (60 * 10) );
+  }
+
+
+
   let num = 0;
   let TimeSleep;
-  
+    
   function plus() {
     clearTimeout(TimeSleep);
     console.log("plus");
@@ -421,6 +491,8 @@
     </div>
 
     <div style="border: 1px solid black; margin-bottom: 20px; padding-left: 20px;">비동기 <br/>setTimeout , clearTimeout (sleep과 유사하나 비동기)<br/><br/>
+      <input type="button" value="시간1" onclick="time()" class="btn btn-success" />
+      <input type="button" value="시간2" onclick="timeM()" class="btn btn-success" />
       <input type="button" value="증가" onclick="plus()" class="btn btn-success" />
       <input type="button" value="감소" onclick="minus()" class="btn btn-primary" />
       <input type="button" value="정지" onclick="stop()" class="btn btn-danger" />

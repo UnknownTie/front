@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test9.html</title>
+  <style>
+    * {
+      line-height: 20pt;
+    }
+
+    
+
+    .T1 .a1{ background-color: violet;}
+    .T1 > .a1 > .a2 > .a3 > .a1  { background-color: skyblue;}
+    .bgColorskyblue {  color: skyblue; }
+    .T1 > ol > li > ul > li > ol >li {  color: pink; color: #f0f;       }
+    .bgColorpink {  color: pink;  }
+
+/* 자손 선택자(공백으로 분리) */
+    .T1 ol li ul { color: blue; color: #0f0; }  
+    .bgColorblue {  color: blue; }
+    .T2 ol  li  ul  li  ol {   color: red;  }
+    .bgColorRed {  color: red;  }
+/* 자식 선택자(>로 분리) */
+
+
+
+
+  </style>
+</head>
+<body>
+  <h2>CSS 연습</h2>
+  <h3>자식 자손 연습</h3>
+  <p>
+    <span></span>
+  </p>
+  <div class="T1">
+    <div class="bgColorblue">자손</div>
+    <div class="bgColorpink">자식</div>
+    <ol class="a1">  
+      <li class="a2">"1"
+        <ul class="a3">
+          <li  class="a1">"2"</li>
+          <li  class="a2">"3"</li>
+          <li  class="a1">"4"
+            <ol  class="a2">
+              <li>"5"</li>
+              <li>"6"</li>
+
+              <li> 
+                <ol>
+                  <li>"A ol li ul li ol li"</li>
+                  <li>"ol li ul li ol li"</li>
+                  <ol>
+                    <li>"B ol li ul li ol li"</li>
+                    <li>"ol li ul li ol li"</li>
+                  </ol>
+                </ol>
+              </li>
+
+            </ol>
+          </li>
+          <ol>
+            <li>"ol li ul li ol li"</li>
+            <li>"ol li ul li ol li"</li>
+          </ol>
+        </ul>
+        <div>A</div>
+      </li>
+      <div>A</div>
+      <ol>
+        <li>"ol li ul li ol li"</li>
+        <li>"ol li ul li ol li"</li>
+      </ol>
+      <li>"ol li"</li>
+    </ol>
+  </div>
+
+  <!-- <div class="T2">
+    <div class="bgColorRed">자손</div>
+    <div class="bgColorskyblue">자식</div>
+    <ol >  
+      <li>"ol li"
+        <ul>
+          <li>"ol li ul li"</li>
+          <li>"ol li ul li"</li>
+          <li>"ol li"
+            <ol>
+              <li>"ol li ul li ol li"</li>
+              <li>"ol li ul li ol li"</li>
+              <li>
+                <ol>
+                  <li>"ol li ul li ol li"</li>
+                  <li>"ol li ul li ol li"</li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+          <ol>
+            <li>"ol li ul li ol li"</li>
+            <li>"ol li ul li ol li"</li>
+          </ol>
+        </ul>
+        <div>A</div>
+      </li>
+      <div>A</div>
+      <ol>
+        <li>"ol li ul li ol li"</li>
+        <li>"ol li ul li ol li"</li>
+      </ol>
+      <li>"ol li"</li>
+    </ol>
+  </div>  -->
+</body>
+</html>
